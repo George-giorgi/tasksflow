@@ -1,6 +1,6 @@
 1 - prepare invaironment (globalcss, fonts) etc. +
-2 - make git repository
-3 - add drawigio for planning app
+2 - make git repository +
+3 - add drawig.io for planning app +
 
 app flow ::::
 
