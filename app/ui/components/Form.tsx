@@ -1,6 +1,22 @@
+"use client";
+
+import { createEmployee } from "@/app/utils/actions";
+
 const Form = ({ title }: { title: string }) => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const result = await createEmployee(formData);
+
+    if (result.success) {
+      window.alert("Employee added successfully!");
+    } else {
+      window.alert("Failed to add employee.");
+    }
+  };
+
   return (
-    <form className=" w-[50%] !mt-10">
+    <form onSubmit={(e) => handleSubmit(e)} className=" w-[50%] !mt-10">
       <div className="space-y-4">
         <input
           type="text"
@@ -22,7 +38,7 @@ const Form = ({ title }: { title: string }) => {
         />
         <input
           type="text"
-          name="number"
+          name="mobile"
           placeholder="Mobile Number"
           className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-blue-500 outline-none"
         />
