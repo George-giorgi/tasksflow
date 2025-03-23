@@ -23,7 +23,7 @@ const Form = ({ title }: { title: string }) => {
         <input
           type="text"
           name="number"
-          placeholder="Number"
+          placeholder="Mobile Number"
           className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-blue-500 outline-none"
         />
         <button

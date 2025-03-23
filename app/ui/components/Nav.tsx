@@ -6,7 +6,6 @@ import Link from "next/link";
 
 const Nav = ({ links }: NavProps) => {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <div className=" flex gap-3 items-center justify-center">
