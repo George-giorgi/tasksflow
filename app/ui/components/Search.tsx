@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-import { deleteEmployee } from "@/app/utils/actions";
+import { Employeees } from "./Employeees";
 
 const Search = ({
   deletee,
@@ -57,7 +57,10 @@ const Search = ({
       <div className=" h-20 overflow-scroll !mt-5">
         {searchresult.map((empl) => {
           return (
-            <div key={empl.id} onClick={() => handleCklick(empl.id)}>
+            <div
+              className=" flex gap-3 items-center justify-center  !mt-4"
+              key={empl.id}
+            >
               <Employeees
                 // key={empl.id}
                 id={empl.id}
@@ -67,53 +70,16 @@ const Search = ({
                 mobile={empl.mobile}
                 deletee={deletee}
               />
+              <button
+                className=" bg-amber-400"
+                onClick={() => handleCklick(empl.id)}
+              >
+                Edit
+              </button>
             </div>
           );
         })}
       </div>
-    </div>
-  );
-};
-
-export const Employeees = ({
-  deletee,
-  id,
-  name,
-  surname,
-  email,
-  mobile,
-}: {
-  deletee?: boolean;
-  id: string;
-  name?: string;
-  surname?: string;
-  email?: string;
-  mobile?: string | null;
-}) => {
-  const handleDeleteClick = async (id: string) => {
-    const deleteResult = await deleteEmployee(id);
-    if (deleteResult) {
-      window.alert("Employeee delete secssesfully");
-    } else {
-      window.alert("Something wrong for delete");
-    }
-  };
-  return (
-    <div className=" flex gap-3 cursor-pointer !mt-3">
-      <p>{name}</p>
-      <p>{surname}</p>
-      <p>{email}</p>
-      <p>{mobile}</p>
-      <p>
-        {deletee && (
-          <button
-            className="text-white bg-red-400"
-            onClick={() => handleDeleteClick(id)}
-          >
-            delete
-          </button>
-        )}
-      </p>
     </div>
   );
 };
