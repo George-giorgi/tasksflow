@@ -7,66 +7,69 @@
         <mxCell id="wYFMXES_aJNbngL9hCIE-1" value="Admin&lt;div&gt;page&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="340" y="190" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="wYFMXES_aJNbngL9hCIE-1">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="wYFMXES_aJNbngL9hCIE-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="380" y="360" as="sourcePoint" />
             <mxPoint x="210" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="wYFMXES_aJNbngL9hCIE-1">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" parent="1" source="wYFMXES_aJNbngL9hCIE-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="380" y="360" as="sourcePoint" />
             <mxPoint x="540" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-3" value="employee&lt;div&gt;page&lt;/div&gt;&lt;div&gt;layout&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-3" value="employee&lt;div&gt;page&lt;/div&gt;&lt;div&gt;layout&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="130" y="320" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-4" value="tasks&lt;div&gt;page&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-4" value="tasks&lt;div&gt;page&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="500" y="320" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-6" value="&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Components:&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;Form&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Nav&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="270" y="40" width="220" height="100" as="geometry" />
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-6" value="&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Components:&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;Form -&amp;gt;depend on (title)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Nav-&amp;gt;&lt;/div&gt;&lt;div&gt;Search -&amp;gt; update url with params (iquery), list searched employes, listen handleClick -&amp;gt; update url with id&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="270" y="40" width="220" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-7" value="add/page&lt;div&gt;Form&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-7" value="add/page&lt;div&gt;Form&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="-50" y="490" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-8" value="delete/page" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="310" y="490" width="80" height="80" as="geometry" />
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-8" value="delete/page" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="400" y="500" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-9" value="edit/page" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="120" y="490" width="80" height="80" as="geometry" />
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-9" value="edit/page&lt;div&gt;Search&lt;br&gt;&lt;div&gt;Form&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;functions:&lt;/div&gt;&lt;div&gt;get searchparams wichs are added to url from Search component, pass result to search as prop for render lis of searched employees.&lt;/div&gt;&lt;div&gt;pass props to Form for update in future&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=top;align=left;" parent="1" vertex="1">
+          <mxGeometry x="120" y="490" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="KyeeAG4AAdfrqYYFwvps-3" target="KyeeAG4AAdfrqYYFwvps-8">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="KyeeAG4AAdfrqYYFwvps-3" target="KyeeAG4AAdfrqYYFwvps-8" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="320" y="500" as="sourcePoint" />
             <mxPoint x="370" y="450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="KyeeAG4AAdfrqYYFwvps-3" target="KyeeAG4AAdfrqYYFwvps-9">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="KyeeAG4AAdfrqYYFwvps-3" target="KyeeAG4AAdfrqYYFwvps-9" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="320" y="500" as="sourcePoint" />
             <mxPoint x="370" y="450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="KyeeAG4AAdfrqYYFwvps-3" target="KyeeAG4AAdfrqYYFwvps-7">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" parent="1" source="KyeeAG4AAdfrqYYFwvps-3" target="KyeeAG4AAdfrqYYFwvps-7" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="320" y="500" as="sourcePoint" />
             <mxPoint x="370" y="450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-14" value="Db/prisma" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-14" value="Db/prisma" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="600" y="40" width="80" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-15" value="employee table&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-15" value="employee table&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="720" y="80" width="130" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-17" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=1.013;entryY=0.617;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.012;exitY=0.613;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="KyeeAG4AAdfrqYYFwvps-15" target="KyeeAG4AAdfrqYYFwvps-14">
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-17" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=1.013;entryY=0.617;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.012;exitY=0.613;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="KyeeAG4AAdfrqYYFwvps-15" target="KyeeAG4AAdfrqYYFwvps-14" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="320" y="380" as="sourcePoint" />
             <mxPoint x="370" y="330" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="J-cySg9SvwEDNT0kXpcs-7" value="actions&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;createEmployee&lt;/div&gt;&lt;div&gt;searchEmployee&lt;/div&gt;&lt;div&gt;getemployeebyId&lt;/div&gt;&lt;div&gt;updateemployee&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="40" width="200" height="160" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
