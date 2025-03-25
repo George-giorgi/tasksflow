@@ -25,4 +25,58 @@ const createEmployee = async (
   }
 };
 
-export { createEmployee };
+const searchEmployees = async (query?: string) => {
+  const employees = await prisma.employee.findMany({
+    where: {
+      OR: [
+        { name: { contains: query, mode: "insensitive" } },
+        { surname: { contains: query, mode: "insensitive" } },
+        { email: { contains: query, mode: "insensitive" } },
+        { mobile: { contains: query, mode: "insensitive" } },
+      ],
+    },
+    select: {
+      id: true,
+      name: true,
+      surname: true,
+      email: true,
+      mobile: true,
+    },
+  });
+  return employees;
+};
+
+const getEmployeeById = async (id?: string) => {
+  if (!id) {
+    // Either return null or throw an error if id is missing
+    return null;
+  }
+  const employee = await prisma.employee.findUnique({
+    where: { id },
+  });
+  return employee;
+};
+
+const updateEmployee = async (
+  id: string | undefined,
+  updateData: FormData
+): Promise<{ success: boolean; employee?: any }> => {
+  const { name, surname, email, mobile } = Object.fromEntries(updateData);
+  try {
+    const updatedEmployee = await prisma.employee.update({
+      where: { id },
+      data: {
+        name: name as string,
+        surname: surname as string,
+        email: email as string,
+        mobile: mobile as string,
+      },
+    });
+    return { success: true, employee: updatedEmployee };
+  } catch (error) {
+    console.error("Error updating employee:", error);
+    return { success: false };
+  }
+};
+
+export { createEmployee, searchEmployees, getEmployeeById, updateEmployee };
