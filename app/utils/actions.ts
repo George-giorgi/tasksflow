@@ -79,4 +79,22 @@ const updateEmployee = async (
   }
 };
 
-export { createEmployee, searchEmployees, getEmployeeById, updateEmployee };
+const deleteEmployee = async (id: string) => {
+  try {
+    const deletedEmployee = await prisma.employee.delete({
+      where: { id },
+    });
+    return true;
+  } catch (error) {
+    console.error("Error deleting employee:", error);
+    throw error;
+  }
+};
+
+export {
+  createEmployee,
+  searchEmployees,
+  getEmployeeById,
+  updateEmployee,
+  deleteEmployee,
+};

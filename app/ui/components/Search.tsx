@@ -2,9 +2,13 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
+import { deleteEmployee } from "@/app/utils/actions";
+
 const Search = ({
+  deletee,
   searchresult,
 }: {
+  deletee?: boolean;
   searchresult: {
     id: string;
     name: string;
@@ -56,10 +60,12 @@ const Search = ({
             <div key={empl.id} onClick={() => handleCklick(empl.id)}>
               <Employeees
                 // key={empl.id}
+                id={empl.id}
                 name={empl.name}
                 surname={empl.surname}
                 email={empl.email}
                 mobile={empl.mobile}
+                deletee={deletee}
               />
             </div>
           );
@@ -69,23 +75,45 @@ const Search = ({
   );
 };
 
-const Employeees = ({
+export const Employeees = ({
+  deletee,
+  id,
   name,
   surname,
   email,
   mobile,
 }: {
-  name: string;
-  surname: string;
-  email: string;
-  mobile: string | null;
+  deletee?: boolean;
+  id: string;
+  name?: string;
+  surname?: string;
+  email?: string;
+  mobile?: string | null;
 }) => {
+  const handleDeleteClick = async (id: string) => {
+    const deleteResult = await deleteEmployee(id);
+    if (deleteResult) {
+      window.alert("Employeee delete secssesfully");
+    } else {
+      window.alert("Something wrong for delete");
+    }
+  };
   return (
-    <div className=" flex gap-3 cursor-pointer">
+    <div className=" flex gap-3 cursor-pointer !mt-3">
       <p>{name}</p>
       <p>{surname}</p>
       <p>{email}</p>
       <p>{mobile}</p>
+      <p>
+        {deletee && (
+          <button
+            className="text-white bg-red-400"
+            onClick={() => handleDeleteClick(id)}
+          >
+            delete
+          </button>
+        )}
+      </p>
     </div>
   );
 };

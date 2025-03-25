@@ -19,7 +19,7 @@ const Page = async (props: {
   return (
     <div className=" flex justify-center items-center flex-col">
       <div className=" flex items-center justify-center">
-        <Search searchresult={result} />
+        <Search searchresult={result} deletee={true} />
       </div>
 
       <div className=" flex items-center justify-center !mt-15">
