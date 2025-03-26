@@ -54,6 +54,7 @@ const getEmployeeById = async (id?: string) => {
   const employee = await prisma.employee.findUnique({
     where: { id },
   });
+
   return employee;
 };
 
@@ -91,10 +92,33 @@ const deleteEmployee = async (id: string) => {
   }
 };
 
+const createTasks = async (formData: FormData) => {
+  // Expecting the tasks data as a JSON string in the "tasks" field
+  const tasksJson = formData.get("tasks");
+  if (!tasksJson) {
+    throw new Error("No tasks provided");
+  }
+  const tasks = JSON.parse(tasksJson as string);
+
+  // Insert all tasks using createMany
+  try {
+    await prisma.task.createMany({
+      data: tasks,
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.log("erorrrrrrr for make tasks", error);
+
+    return { success: false };
+  }
+};
+
 export {
   createEmployee,
   searchEmployees,
   getEmployeeById,
   updateEmployee,
   deleteEmployee,
+  createTasks,
 };

@@ -22,3 +22,18 @@ model Employee {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Task {
+  id                      String   @id @default(uuid()) @db.Uuid
+  partNumber              String
+  description             String
+  descriptionFromEmployee String
+  metalType               String
+  drawing                 String
+  qty                     Int
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @default(now()) @updatedAt
+}
+
+
+
