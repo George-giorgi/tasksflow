@@ -2,6 +2,7 @@
 
 import prisma from "./prisma_connection";
 
+// Employee Block
 const createEmployee = async (
   formData: FormData
 ): Promise<{ success: boolean; employee?: any }> => {
@@ -92,6 +93,7 @@ const deleteEmployee = async (id: string) => {
   }
 };
 
+// Tasks Block
 const createTasks = async (formData: FormData) => {
   // Expecting the tasks data as a JSON string in the "tasks" field
   const tasksJson = formData.get("tasks");
@@ -114,6 +116,32 @@ const createTasks = async (formData: FormData) => {
   }
 };
 
+const searchTasks = async (query?: string) => {
+  const tasks = await prisma.task.findMany({
+    where: {
+      OR: [
+        { partNumber: { contains: query, mode: "insensitive" } },
+        { description: { contains: query, mode: "insensitive" } },
+        { descriptionFromEmployee: { contains: query, mode: "insensitive" } },
+        { metalType: { contains: query, mode: "insensitive" } },
+        { drawing: { contains: query, mode: "insensitive" } },
+      ],
+    },
+    select: {
+      id: true,
+      partNumber: true,
+      description: true,
+      descriptionFromEmployee: true,
+      metalType: true,
+      drawing: true,
+      qty: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return tasks;
+};
+
 export {
   createEmployee,
   searchEmployees,
@@ -121,4 +149,5 @@ export {
   updateEmployee,
   deleteEmployee,
   createTasks,
+  searchTasks,
 };

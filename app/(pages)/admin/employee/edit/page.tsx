@@ -6,7 +6,6 @@ const Page = async (props: {
   searchParams?: Promise<{
     id?: string;
     query?: string;
-    page?: string;
   }>;
 }) => {
   const searchParams = await props.searchParams;
@@ -20,7 +19,7 @@ const Page = async (props: {
     <div className=" flex justify-center items-center flex-col">
       <div className=" flex items-center justify-center">
         <Search
-          searchresult={result}
+          searchresultEmployee={result}
           deletee={true}
           title={"Search Employee"}
         />

@@ -1,23 +1,21 @@
 "use client";
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { searchTasks, SearchResultEmployee } from "@/app/utils/definitions";
 
 import { Employeees } from "./Employeees";
+import TaskComponent from "./TaskComponent";
 
 const Search = ({
   title,
   deletee,
-  searchresult,
+  searchTasks,
+  searchresultEmployee,
 }: {
   title: string;
   deletee?: boolean;
-  searchresult?: {
-    id: string;
-    name: string;
-    surname: string;
-    email: string;
-    mobile: string | null;
-  }[];
+  searchTasks?: searchTasks;
+  searchresultEmployee?: SearchResultEmployee;
 }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -81,15 +79,14 @@ const Search = ({
         />
       </div>
 
-      <div className=" h-20 overflow-scroll !mt-5">
-        {searchresult?.map((empl) => {
-          return (
+      <div className="h-20 overflow-scroll !mt-5">
+        {searchresultEmployee && searchresultEmployee.length > 0 ? (
+          searchresultEmployee.map((empl) => (
             <div
-              className=" flex gap-3 items-center justify-center  !mt-4"
               key={empl.id}
+              className="flex gap-3 items-center justify-center !mt-4"
             >
               <Employeees
-                // key={empl.id}
                 id={empl.id}
                 name={empl.name}
                 surname={empl.surname}
@@ -98,14 +95,41 @@ const Search = ({
                 deletee={deletee}
               />
               <button
-                className=" bg-amber-400"
+                className="bg-amber-400"
                 onClick={() => handleCklick(empl.id)}
               >
                 Edit
               </button>
             </div>
-          );
-        })}
+          ))
+        ) : searchTasks && searchTasks.length > 0 ? (
+          searchTasks.map((task) => (
+            <div
+              key={task.id}
+              className="flex gap-3 items-center justify-center !mt-4"
+            >
+              <TaskComponent
+                id={task.id}
+                partNumber={task.partNumber}
+                description={task.description}
+                descriptionFromEmployee={task.descriptionFromEmployee}
+                metalType={task.metalType}
+                drawing={task.drawing}
+                qty={task.qty}
+                createdAt={task.createdAt}
+                updatedAt={task.updatedAt}
+              />
+              <button
+                className="bg-amber-400"
+                // onClick={() => handleTaskClick(task.id)}
+              >
+                Edit
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>No results found</p>
+        )}
       </div>
     </div>
   );

@@ -6,3 +6,34 @@ type linkItem = {
 export type NavProps = {
   links: linkItem[];
 };
+
+export type searchTasks = {
+  id: string;
+  partNumber: string;
+  description: string;
+  descriptionFromEmployee: string;
+  metalType: string;
+  drawing: string;
+  qty: number;
+  createdAt: Date;
+  updatedAt: Date;
+}[];
+export type searchOneTasks = {
+  id: string;
+  partNumber: string;
+  description: string;
+  descriptionFromEmployee: string;
+  metalType: string;
+  drawing: string;
+  qty: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type SearchResultEmployee = {
+  id: string;
+  name: string;
+  surname: string;
+  email: string;
+  mobile: string | null;
+}[];
