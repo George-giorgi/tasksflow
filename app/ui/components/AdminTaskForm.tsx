@@ -2,14 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { createTasks } from "@/app/utils/actions";
-type Task = {
-  partNumber: string;
-  description: string;
-  descriptionFromEmployee: string;
-  metalType: string;
-  drawing: string;
-  qty: number;
-};
+import { TaskShapeDb, Task } from "@/app/utils/definitions";
 
 export default function AdminTaskForm() {
   const [tasks, setTasks] = useState<Task[]>([

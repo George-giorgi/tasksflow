@@ -37,3 +37,24 @@ export type SearchResultEmployee = {
   email: string;
   mobile: string | null;
 }[];
+
+export type TaskShapeDb = {
+  id: string;
+  partNumber: string;
+  description: string;
+  descriptionFromEmployee: string;
+  metalType: string;
+  drawing: string;
+  qty: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type Task = {
+  id?: string;
+  partNumber?: string;
+  description?: string;
+  descriptionFromEmployee?: string;
+  metalType?: string;
+  drawing?: string;
+  qty?: number;
+};

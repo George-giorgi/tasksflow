@@ -5,7 +5,7 @@
 app flow ::::
 
 admin (add, delete, update)-employee +
-admin (add +, delete , update)-tasks (დასაწერია სეარჩის ქუერი, ედითის ლოგიკა და წაშლა)
+admin (add +, Search+ delete , update)-tasks (დასაწერია სეარჩის ქუერი, ედითის ლოგიკა და წაშლა)
 
 employee (chlockin,choose,switch,clockout) - tasks
 

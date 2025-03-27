@@ -141,6 +141,46 @@ const searchTasks = async (query?: string) => {
   });
   return tasks;
 };
+const findTaskById = async (id?: string) => {
+  if (!id) {
+    // Either return null or throw an error if id is missing
+    return null;
+  }
+  const task = await prisma.task.findUnique({
+    where: { id },
+  });
+  return task;
+};
+const updateTask = async (
+  id: string | undefined,
+  updateData: FormData
+): Promise<{ success: boolean; employee?: any }> => {
+  const {
+    partNumber,
+    description,
+    descriptionFromEmployee,
+    metalType,
+    drawing,
+    qty,
+  } = Object.fromEntries(updateData);
+  try {
+    const updatedEmployee = await prisma.task.update({
+      where: { id },
+      data: {
+        partNumber: partNumber as string,
+        description: description as string,
+        descriptionFromEmployee: descriptionFromEmployee as string,
+        metalType: metalType as string,
+        drawing: drawing as string,
+        qty: typeof qty === "string" ? Number(qty) : 0,
+      },
+    });
+    return { success: true, employee: updatedEmployee };
+  } catch (error) {
+    console.error("Error updating employee:", error);
+    return { success: false };
+  }
+};
 
 export {
   createEmployee,
@@ -150,4 +190,6 @@ export {
   deleteEmployee,
   createTasks,
   searchTasks,
+  findTaskById,
+  updateTask,
 };

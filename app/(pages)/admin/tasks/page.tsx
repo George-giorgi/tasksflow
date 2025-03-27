@@ -1,6 +1,7 @@
 import AdminTaskForm from "@/app/ui/components/AdminTaskForm";
 import Search from "@/app/ui/components/Search";
-import { searchTasks } from "@/app/utils/actions";
+import EditFormForTask from "@/app/ui/components/EditFormForTask";
+import { searchTasks, findTaskById } from "@/app/utils/actions";
 const Page = async (props: {
   searchParams?: Promise<{
     id?: string;
@@ -9,8 +10,10 @@ const Page = async (props: {
 }) => {
   const searchParams = await props.searchParams;
   const query = searchParams?.task_query;
+  const taskId = searchParams?.id;
   const tasksresult = await searchTasks(query);
-  // console.log(tasksresult);
+  const findedTaskForEdit = await findTaskById(taskId);
+  console.log(taskId);
 
   return (
     <div>
@@ -18,6 +21,17 @@ const Page = async (props: {
       <div className=" !mb-36 ">
         <Search title={"Search Task"} searchTasks={tasksresult} />
       </div>
+      {findedTaskForEdit && (
+        <EditFormForTask
+          id={findedTaskForEdit.id}
+          partNumber={findedTaskForEdit?.partNumber}
+          description={findedTaskForEdit?.description}
+          descriptionFromEmployee={findedTaskForEdit?.descriptionFromEmployee}
+          metalType={findedTaskForEdit?.metalType}
+          drawing={findedTaskForEdit?.drawing}
+          qty={findedTaskForEdit?.qty}
+        />
+      )}
 
       <AdminTaskForm />
     </div>

@@ -121,7 +121,7 @@ const Search = ({
               />
               <button
                 className="bg-amber-400"
-                // onClick={() => handleTaskClick(task.id)}
+                onClick={() => handleCklick(task.id)}
               >
                 Edit
               </button>
