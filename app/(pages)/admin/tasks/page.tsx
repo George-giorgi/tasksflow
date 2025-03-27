@@ -1,6 +1,6 @@
-import AdminTaskForm from "@/app/ui/components/AdminTaskForm";
-import Search from "@/app/ui/components/Search";
-import EditFormForTask from "@/app/ui/components/EditFormForTask";
+import AdminTaskForm from "@/app/ui/components/admin/tasks/AdminTaskForm";
+import Search from "@/app/ui/components/Share/Search";
+import EditFormForTask from "@/app/ui/components/admin/tasks/EditFormForTask";
 import { searchTasks, findTaskById } from "@/app/utils/actions";
 const Page = async (props: {
   searchParams?: Promise<{

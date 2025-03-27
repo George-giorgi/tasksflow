@@ -3,8 +3,8 @@
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { searchTasks, SearchResultEmployee } from "@/app/utils/definitions";
 
-import { Employeees } from "./Employeees";
-import TaskComponent from "./TaskComponent";
+import { Employeees } from "../admin/employee/Employeees";
+import TaskComponent from "../admin/tasks/TaskComponent";
 
 const Search = ({
   title,

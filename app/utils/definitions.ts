@@ -58,3 +58,11 @@ export type Task = {
   drawing?: string;
   qty?: number;
 };
+
+export type OneEmployee = {
+  id: string;
+  name: string;
+  surname: string;
+  email: string;
+  mobile: string | null;
+};

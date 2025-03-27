@@ -1,4 +1,4 @@
-import Form from "@/app/ui/components/Form";
+import Form from "@/app/ui/components/Share/Form";
 
 const Page = () => {
   return (

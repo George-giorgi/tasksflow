@@ -1,5 +1,5 @@
-import Form from "@/app/ui/components/Form";
-import Search from "@/app/ui/components/Search";
+import Form from "@/app/ui/components/Share/Form";
+import Search from "@/app/ui/components/Share/Search";
 import { searchEmployees, getEmployeeById } from "@/app/utils/actions";
 
 const Page = async (props: {
