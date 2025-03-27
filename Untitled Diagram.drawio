@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.2">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.3">
   <diagram name="Page-1" id="hzJ_59KVR99nFLsGmfMX">
     <mxGraphModel dx="1900" dy="641" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -22,11 +22,14 @@
         <mxCell id="KyeeAG4AAdfrqYYFwvps-3" value="employee&lt;div&gt;page&lt;/div&gt;&lt;div&gt;layout&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="150" y="430" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-4" value="tasks/page&lt;div&gt;Search&lt;/div&gt;&lt;div&gt;Admintaskform&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-          <mxGeometry x="520" y="420" width="100" height="100" as="geometry" />
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-4" value="tasks/page&lt;div&gt;Search&lt;/div&gt;&lt;div&gt;EdittaskForm(conditional)&lt;/div&gt;&lt;div&gt;Admintaskform&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=top;align=left;" parent="1" vertex="1">
+          <mxGeometry x="520" y="420" width="140" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="KyeeAG4AAdfrqYYFwvps-6" value="&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Components:&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;Form -&amp;gt;depend on (title)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Nav-&amp;gt;&lt;/div&gt;&lt;div&gt;Search -&amp;gt; update url with params (iquery), list searched employes, listen handleClick -&amp;gt; update url with id&amp;nbsp;&lt;/div&gt;&lt;div&gt;Employeees -&amp;gt; render list of employee after serch and delete heppening from here&lt;/div&gt;&lt;div&gt;AdminTaskForm -&amp;gt;&amp;nbsp; i can add and delete tasks virtually with usestate and submit all together to insert DB&lt;/div&gt;&lt;div&gt;TaskComponent -&amp;gt; one task shape after search&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
-          <mxGeometry x="270" y="40" width="220" height="250" as="geometry" />
+        <mxCell id="iXD2K77V01XflE1XxDsA-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyeeAG4AAdfrqYYFwvps-6" target="wYFMXES_aJNbngL9hCIE-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyeeAG4AAdfrqYYFwvps-6" value="&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;Components:&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;Form -&amp;gt;depend on (title)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Nav-&amp;gt;&lt;/div&gt;&lt;div&gt;Search -&amp;gt; update url with params (iquery), list searched employes, listen handleClick -&amp;gt; update url with id&amp;nbsp;&lt;/div&gt;&lt;div&gt;Employeees -&amp;gt; render list of employee after serch and delete heppening from here&lt;/div&gt;&lt;div&gt;AdminTaskForm -&amp;gt;&amp;nbsp; i can add and delete tasks virtually with usestate and submit all together to insert DB&lt;/div&gt;&lt;div&gt;TaskComponent -&amp;gt; one task shape after search&lt;/div&gt;&lt;div&gt;EditFormForTask - &amp;gt; ediit task with formdata and task id wich is given from page&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="270" y="40" width="220" height="290" as="geometry" />
         </mxCell>
         <mxCell id="KyeeAG4AAdfrqYYFwvps-7" value="add/page&lt;div&gt;Form&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="-50" y="570" width="80" height="80" as="geometry" />
