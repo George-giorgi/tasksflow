@@ -9,8 +9,11 @@ const Page = async (props: {
   }>;
 }) => {
   const searchParams = await props.searchParams;
+
+  // gramb querys
   const query = searchParams?.task_query;
   const taskId = searchParams?.id;
+  // call actions for search all mached and edit single task
   const tasksresult = await searchTasks(query);
   const findedTaskForEdit = await findTaskById(taskId);
   console.log(taskId);
@@ -21,6 +24,7 @@ const Page = async (props: {
       <div className=" !mb-36 ">
         <Search title={"Search Task"} searchTasks={tasksresult} />
       </div>
+      {/* if we try tu find task for edit will render edit form component */}
       {findedTaskForEdit && (
         <EditFormForTask
           id={findedTaskForEdit.id}

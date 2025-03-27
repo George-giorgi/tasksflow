@@ -182,6 +182,20 @@ const updateTask = async (
   }
 };
 
+const deleteTask = async (
+  id: string
+): Promise<{ success: boolean; task?: any }> => {
+  try {
+    const deletedTask = await prisma.task.delete({
+      where: { id },
+    });
+    return { success: true, task: deletedTask };
+  } catch (error) {
+    console.error("Error deleting task:", error);
+    return { success: false };
+  }
+};
+
 export {
   createEmployee,
   searchEmployees,
@@ -192,4 +206,5 @@ export {
   searchTasks,
   findTaskById,
   updateTask,
+  deleteTask,
 };

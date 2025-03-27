@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, FormEvent } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Task } from "@/app/utils/definitions";
 import { updateTask } from "@/app/utils/actions";
 
@@ -22,7 +23,11 @@ const EditFormForTask = ({
     qty: qty || "",
   });
 
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     // Create a FormData object from the form
     const formData = new FormData(e.currentTarget);
     // e.preventDefault();
@@ -34,6 +39,7 @@ const EditFormForTask = ({
     } else {
       window.alert("Failed to Update Task.");
     }
+    replace(`${pathname}`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
