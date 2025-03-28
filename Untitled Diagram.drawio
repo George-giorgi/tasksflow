@@ -79,6 +79,15 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="V80NBvgEfO97bi1LC36t-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="V80NBvgEfO97bi1LC36t-1" target="V80NBvgEfO97bi1LC36t-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="640" as="sourcePoint" />
+            <mxPoint x="540" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V80NBvgEfO97bi1LC36t-6" value="[id]/page&lt;div&gt;here is a portal for search employee for clock in out and so on&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="440" y="810" width="160" height="160" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
