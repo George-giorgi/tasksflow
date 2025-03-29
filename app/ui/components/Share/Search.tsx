@@ -7,11 +7,15 @@ import { Employeees } from "../admin/employee/Employeees";
 import TaskComponent from "../admin/tasks/TaskComponent";
 
 const Search = ({
+  employeeId,
+  portal,
   title,
   deletee,
   searchTasks,
   searchresultEmployee,
 }: {
+  employeeId?: string;
+  portal?: boolean;
   title: string;
   deletee?: boolean;
   searchTasks?: searchTasks;
@@ -109,7 +113,9 @@ const Search = ({
               className="flex gap-3 items-center justify-center !mt-4"
             >
               <TaskComponent
+                employeeId={employeeId}
                 id={task.id}
+                portal={portal}
                 partNumber={task.partNumber}
                 description={task.description}
                 descriptionFromEmployee={task.descriptionFromEmployee}
@@ -119,12 +125,14 @@ const Search = ({
                 createdAt={task.createdAt}
                 updatedAt={task.updatedAt}
               />
-              <button
-                className="bg-amber-400"
-                onClick={() => handleCklick(task.id)}
-              >
-                Edit
-              </button>
+              {!portal && (
+                <button
+                  className="bg-amber-400"
+                  onClick={() => handleCklick(task.id)}
+                >
+                  Edit
+                </button>
+              )}
             </div>
           ))
         ) : (

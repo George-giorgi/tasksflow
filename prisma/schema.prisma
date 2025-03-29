@@ -35,5 +35,13 @@ model Task {
   updatedAt               DateTime @default(now()) @updatedAt
 }
 
+model TaskSession {
+  id       String   @id @default(uuid()) @db.Uuid
+  userId   String   // Reference to the user (you might add a relation if you have a User model)
+  taskId   String   // Reference to the task
+  clockIn  DateTime @default(now())
+  clockOut DateTime?
+}
+
 
 

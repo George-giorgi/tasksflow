@@ -69,7 +69,7 @@ export default function Form({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-[50%] !mt-10">
+    <form onSubmit={handleSubmit} method="POST" className="w-[50%] !mt-10">
       <div className="space-y-4">
         <input
           type="text"

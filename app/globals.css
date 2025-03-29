@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+:root {
+  --header-color: #1e90ff; /* Dodger Blue */
+  --smaltext-color: #a0aec0;
+  --hover-color: #ff6f61;
+}
+
 *,
 *::before,
 *::after {

@@ -16,7 +16,6 @@ const Page = async (props: {
   // call actions for search all mached and edit single task
   const tasksresult = await searchTasks(query);
   const findedTaskForEdit = await findTaskById(taskId);
-  console.log(taskId);
 
   return (
     <div>

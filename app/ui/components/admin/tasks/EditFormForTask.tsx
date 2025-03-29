@@ -142,7 +142,7 @@ const EditFormForTask = ({
           className="bg-yellow-500  cursor-pointer pl-4 pr-4 rounded-md"
           type="submit"
         >
-          Edit
+          Save
         </button>
       </form>
     </>

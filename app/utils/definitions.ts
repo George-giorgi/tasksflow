@@ -20,6 +20,8 @@ export type searchTasks = {
 }[];
 export type searchOneTasks = {
   id: string;
+  employeeId?: string;
+  portal?: boolean;
   partNumber: string;
   description: string;
   descriptionFromEmployee: string;

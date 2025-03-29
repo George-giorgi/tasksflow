@@ -1,7 +1,12 @@
+"use client";
+
 import { searchOneTasks } from "@/app/utils/definitions";
 import { deleteTask } from "@/app/utils/actions";
+import { clockInTask, clockOutTask } from "@/app/utils/actions";
 export default function TaskComponent({
+  employeeId,
   id,
+  portal,
   partNumber,
   description,
   descriptionFromEmployee,
@@ -19,6 +24,14 @@ export default function TaskComponent({
       window.alert("Failed to Delete Task.");
     }
   };
+
+  const handleCklockinClick = async (e: any) => {
+    e.preventDefault();
+
+    const session = await clockInTask(employeeId || "", id);
+    console.log(session);
+  };
+
   return (
     <div className=" flex p-4 border rounded shadow-sm">
       <h3 className="font-bold mb-2">Task ID: {id}</h3>
@@ -46,12 +59,22 @@ export default function TaskComponent({
       <p>
         <strong>Updated:</strong> {new Date(updatedAt).toLocaleString()}
       </p>
-      <form
-        onSubmit={() => handleDeleteClick(id)}
-        className=" flex bg-red-400  text-white pl-3 pr-3 rounded"
-      >
-        <button>Delete</button>
-      </form>
+      {!portal && (
+        <form
+          onSubmit={() => handleDeleteClick(id)}
+          className=" flex bg-red-400  text-white pl-3 pr-3 rounded"
+        >
+          <button>Delete</button>
+        </form>
+      )}
+      {portal && (
+        <form
+          onClick={(e) => handleCklockinClick(e)}
+          className=" flex bg-green-400  text-white pl-3 pr-3 rounded"
+        >
+          <button>Clock In</button>
+        </form>
+      )}
     </div>
   );
 }

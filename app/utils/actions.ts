@@ -195,7 +195,44 @@ const deleteTask = async (
     return { success: false };
   }
 };
+async function clockInTask(userId: string, taskId: string) {
+  // Optionally, check if there is already an open session for this user
+  const openSession = await prisma.taskSession.findFirst({
+    where: { userId, clockOut: null },
+  });
 
+  if (openSession) {
+    throw new Error(
+      "User already clocked in. Please clock out before starting a new task."
+    );
+  }
+
+  const newSession = await prisma.taskSession.create({
+    data: {
+      userId,
+      taskId,
+      // clockIn will default to now()
+    },
+  });
+  return newSession;
+}
+async function clockOutTask(userId: string) {
+  // Find the currently active session (clockOut is null)
+  const openSession = await prisma.taskSession.findFirst({
+    where: { userId, clockOut: null },
+  });
+  if (!openSession) {
+    throw new Error("No active clock in found for the user.");
+  }
+
+  const updatedSession = await prisma.taskSession.update({
+    where: { id: openSession.id },
+    data: {
+      clockOut: new Date(),
+    },
+  });
+  return updatedSession;
+}
 export {
   createEmployee,
   searchEmployees,
@@ -207,4 +244,6 @@ export {
   findTaskById,
   updateTask,
   deleteTask,
+  clockInTask,
+  clockOutTask,
 };
