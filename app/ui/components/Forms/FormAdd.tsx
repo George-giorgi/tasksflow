@@ -13,7 +13,7 @@ export default function FormAdd() {
     email: "",
     mobile: "",
   });
-  const [message, setMessage] = useState<string>();
+  const [message, setMessage] = useState<string>("");
   const [isPending, SetisPending] = useState(false);
   const [error, setError] = useState(false);
 
@@ -22,12 +22,13 @@ export default function FormAdd() {
     e.preventDefault();
     // after true
     SetisPending(true);
+    setMessage("");
     const formData = new FormData(e.currentTarget);
-
     const result = await createEmployee(formData);
 
     if (result.success) {
       setError(false);
+
       // get message from query success
       setMessage(result.message);
     } else {
@@ -42,13 +43,16 @@ export default function FormAdd() {
 
   return (
     <div className=" flex flex-col items-center justify-center">
-      <p
-        className={
-          error ? "text-[var(--error-color)]" : "text-[var(--success-color)]"
-        }
-      >
-        {message}
-      </p>
+      <div className=" h-12">
+        <p
+          className={
+            error ? "text-[var(--error-color)]" : "text-[var(--success-color)]"
+          }
+        >
+          {message}
+        </p>
+      </div>
+
       <form onSubmit={handleSubmit} className="md:w-[30%] w-[50%] !mt-10">
         <div className="space-y-4">
           <input
