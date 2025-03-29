@@ -68,3 +68,12 @@ export type OneEmployee = {
   email: string;
   mobile: string | null;
 };
+
+export type FormProps = {
+  id?: string;
+  title: string;
+  name?: string;
+  surname?: string;
+  email?: string;
+  mobile?: string | null;
+};

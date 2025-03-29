@@ -27,8 +27,8 @@ const Page = async (props: {
 
       <div className=" flex items-center justify-center !mt-15">
         <Form
-          id={id}
           title={"Edit"}
+          id={id}
           name={employee?.name}
           surname={employee?.surname}
           email={employee?.email}

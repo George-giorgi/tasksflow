@@ -2,15 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { createEmployee, updateEmployee } from "@/app/utils/actions";
-
-type FormProps = {
-  id?: string;
-  title?: string;
-  name?: string;
-  surname?: string;
-  email?: string;
-  mobile?: string | null;
-};
+import { FormProps } from "@/app/utils/definitions";
 
 export default function Form({
   id,
@@ -69,45 +61,57 @@ export default function Form({
   };
 
   return (
-    <form onSubmit={handleSubmit} method="POST" className="w-[50%] !mt-10">
+    <form
+      onSubmit={handleSubmit}
+      method="POST"
+      className="md:w-[30%] w-[50%] !mt-10"
+    >
       <div className="space-y-4">
         <input
+          autoComplete="new-name"
           type="text"
           name="name"
           placeholder="Name"
-          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-blue-500 outline-none"
+          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] outline-none placeholder:text-sm rounded-lg"
           value={formState.name}
           onChange={handleChange}
+          required
         />
         <input
+          autoComplete="new-name"
           type="text"
           name="surname"
           placeholder="Surname"
-          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-blue-500 outline-none"
+          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] rounded-lg outline-none placeholder:text-sm"
           value={formState.surname}
           onChange={handleChange}
+          required
         />
         <input
+          autoComplete="new-name"
           type="email"
           name="email"
           placeholder="Email"
-          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-blue-500 outline-none"
+          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] rounded-lg outline-none placeholder:text-sm"
           value={formState.email}
           onChange={handleChange}
+          required
         />
         <input
+          autoComplete="new-name"
           type="text"
           name="mobile"
           placeholder="Mobile Number"
-          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-blue-500 outline-none"
+          className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] rounded-lg outline-none placeholder:text-sm"
           value={formState.mobile}
           onChange={handleChange}
+          required
         />
         <button
           type="submit"
-          className="w-full bg-white text-black py-2 px-4 hover:bg-gray-200 cursor-pointer !mt-4"
+          className="w-max rounded-lg bg-white py-1 px-4 text-[var(--smaltext-color)] hover:text-white hover:bg-[var(--hover-color)] cursor-pointer !mt-4 transition "
         >
-          {title}
+          <span className="  font-semibold">{title}</span>
         </button>
       </div>
     </form>
