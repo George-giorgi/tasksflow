@@ -111,7 +111,7 @@ export default function Form({
           type="submit"
           className="w-max rounded-lg bg-white py-1 px-4 text-[var(--smaltext-color)] hover:text-white hover:bg-[var(--hover-color)] cursor-pointer !mt-4 transition "
         >
-          <span className="  font-semibold">{title}</span>
+          <span className="  font-semibold">{title}.</span>
         </button>
       </div>
     </form>
