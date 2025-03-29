@@ -1,11 +1,13 @@
 "use server";
-
+import { FormState } from "./definitions/definitions";
 import prisma from "./prisma_connection";
 
 // Employee Block
+
+// +
 const createEmployee = async (
   formData: FormData
-): Promise<{ success: boolean; employee?: any }> => {
+): Promise<{ success: boolean; employee: object; message: string }> => {
   const { name, surname, email, mobile } = Object.fromEntries(formData);
 
   try {
@@ -18,11 +20,19 @@ const createEmployee = async (
       },
     });
 
-    return { success: true, employee: newEmployee };
+    return {
+      success: true,
+      employee: newEmployee,
+      message: "Employee added successfully!",
+    };
   } catch (error) {
     console.error("Error inserting employee:", error);
 
-    return { success: false };
+    return {
+      success: false,
+      employee: {},
+      message: "Failed to add employee.",
+    };
   }
 };
 

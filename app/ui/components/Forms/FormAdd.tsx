@@ -1,77 +1,55 @@
 "use client";
+import { FormState } from "@/app/utils/definitions/definitions";
+import { useState, FormEvent } from "react";
 
-import { useState, useEffect, FormEvent } from "react";
-import { createEmployee, updateEmployee } from "@/app/utils/actions";
-import { FormProps } from "@/app/utils/definitions";
-import { useRouter, usePathname, redirect } from "next/navigation";
+import { createEmployee } from "@/app/utils/actions";
+import { resetForm } from "@/app/utils/resetForm";
 
-export default function Form({
-  id,
-  title,
-  name,
-  surname,
-  email,
-  mobile,
-}: FormProps) {
+export default function FormAdd() {
   // Initialize state with the incoming prop values
-  const [formState, setFormState] = useState({
-    name: name || "",
-    surname: surname || "",
-    email: email || "",
-    mobile: mobile || "",
+  const [formState, setFormState] = useState<FormState>({
+    name: "",
+    surname: "",
+    email: "",
+    mobile: "",
   });
-
-  const { replace } = useRouter();
-  const pathname = usePathname();
-
-  // Update the state when the prop values change
-  useEffect(() => {
-    setFormState({
-      name: name || "",
-      surname: surname || "",
-      email: email || "",
-      mobile: mobile || "",
-    });
-  }, [name, surname, email, mobile]);
-
-  // Handle input changes to update the state
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormState((prev) => ({ ...prev, [name]: value }));
-  };
+  const [message, setMessage] = useState<string>();
+  const [isPending, SetisPending] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     // Create a FormData object from the form
+    e.preventDefault();
+    // after true
+    SetisPending(true);
     const formData = new FormData(e.currentTarget);
 
-    if (title == "Edit") {
-      e.preventDefault();
-      const result = await updateEmployee(id, formData);
-      if (result.success) {
-        window.alert("Employee Updated successfully!");
-        replace(pathname);
-      } else {
-        window.alert("Failed to Update employee.");
-      }
-    }
+    const result = await createEmployee(formData);
 
-    if (title == "Add") {
-      const result = await createEmployee(formData);
-      if (result.success) {
-        window.alert("Employee added successfully!");
-      } else {
-        window.alert("Failed to add employee.");
-      }
+    if (result.success) {
+      setError(false);
+      // get message from query success
+      setMessage(result.message);
+    } else {
+      setError(true);
+      // get message from query fail
+      setMessage(result.message);
     }
+    // after false
+    SetisPending(false);
+    setFormState(resetForm());
   };
 
   return (
-    <div className=" flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit}
-        method="POST"
-        className="md:w-[30%] w-[50%] !mt-10"
+    <div className=" flex flex-col items-center justify-center">
+      <p
+        className={
+          error ? "text-[var(--error-color)]" : "text-[var(--success-color)]"
+        }
       >
+        {message}
+      </p>
+      <form onSubmit={handleSubmit} className="md:w-[30%] w-[50%] !mt-10">
         <div className="space-y-4">
           <input
             autoComplete="new-name"
@@ -80,7 +58,12 @@ export default function Form({
             placeholder="Name"
             className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] outline-none placeholder:text-sm rounded-lg"
             value={formState.name}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormState((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
             required
           />
           <input
@@ -90,7 +73,12 @@ export default function Form({
             placeholder="Surname"
             className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] rounded-lg outline-none placeholder:text-sm"
             value={formState.surname}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormState((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
             required
           />
           <input
@@ -100,7 +88,12 @@ export default function Form({
             placeholder="Email"
             className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] rounded-lg outline-none placeholder:text-sm"
             value={formState.email}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormState((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
             required
           />
           <input
@@ -110,14 +103,21 @@ export default function Form({
             placeholder="Mobile Number"
             className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] rounded-lg outline-none placeholder:text-sm"
             value={formState.mobile}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormState((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
             required
           />
           <button
             type="submit"
             className="w-max rounded-lg bg-white py-1 px-4 text-[var(--smaltext-color)] hover:text-white hover:bg-[var(--hover-color)] cursor-pointer !mt-4 transition "
           >
-            <span className="  font-semibold">{title}.</span>
+            <span className="  font-semibold">
+              {isPending ? "Loading" : "Add"}
+            </span>
           </button>
         </div>
       </form>

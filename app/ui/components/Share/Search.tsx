@@ -41,7 +41,7 @@ const Search = ({
   //   }
   //   replace(`${pathname}?${params.toString()}`);
   // }
-  function handleSearch(term: string) {
+  function handleSearch(term: string, searchTitle: string) {
     const params = new URLSearchParams(searchParams);
     // Define a mapping from title to query parameter key
     const searchMapping: { [key: string]: string } = {
@@ -49,8 +49,8 @@ const Search = ({
       "Search Task": "task_query",
     };
     if (term) {
-      if (searchMapping[title]) {
-        params.set(searchMapping[title], term);
+      if (searchMapping[searchTitle]) {
+        params.set(searchMapping[searchTitle], term);
       }
     } else {
       // Remove all possible query params defined in the mapping
@@ -71,19 +71,23 @@ const Search = ({
     replace(`${pathname}?${params.toString()}`);
   };
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <div>
         <input
-          className="peer block !mt-10 rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+          className=" bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] outline-none placeholder:text-sm rounded-lg text-center"
           placeholder={title}
           onChange={(e) => {
-            handleSearch(e.target.value);
+            handleSearch(e.target.value, title);
           }}
-          defaultValue={searchParams.get("query")?.toString()}
+          defaultValue={
+            searchParams.get("query")?.toString() ||
+            searchParams.get("task_query")?.toString()
+          }
+          autoFocus
         />
       </div>
 
-      <div className="h-20 overflow-scroll !mt-5">
+      <div className="h-max overflow-scroll !mt-5 ">
         {searchresultEmployee && searchresultEmployee.length > 0 ? (
           searchresultEmployee.map((empl) => (
             <div

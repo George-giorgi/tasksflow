@@ -1,6 +1,6 @@
-import Welcome from "./ui/HomePageComponent/Welcome";
-import ForAdmin from "./ui/HomePageComponent/ForAdmin";
-import ForEmployee from "./ui/HomePageComponent/ForEmployee";
+import Welcome from "./ui/components/Welcome";
+import ForAdmin from "./ui/components/ForAdmin";
+import ForEmployee from "./ui/components/ForEmployee";
 
 export default function Home() {
   return (

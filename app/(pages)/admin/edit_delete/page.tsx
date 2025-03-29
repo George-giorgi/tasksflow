@@ -1,5 +1,6 @@
 import Form from "@/app/ui/components/Share/Form";
 import Search from "@/app/ui/components/Share/Search";
+import BackHomePage from "@/app/ui/components/Links/BackHomePage";
 import { searchEmployees, getEmployeeById } from "@/app/utils/actions";
 
 const Page = async (props: {
@@ -17,24 +18,29 @@ const Page = async (props: {
 
   return (
     <div className=" flex justify-center items-center flex-col">
-      <div className=" flex items-center justify-center">
-        <Search
-          searchresultEmployee={result}
-          deletee={true}
-          title={"Search Employee"}
-        />
-      </div>
+      <BackHomePage
+        WhatDoYouCan={"You can edit or delete employee information."}
+        AdminName={"Adminname"}
+      />
 
-      <div className=" flex items-center justify-center !mt-15">
-        <Form
-          title={"Edit"}
-          id={id}
-          name={employee?.name}
-          surname={employee?.surname}
-          email={employee?.email}
-          mobile={employee?.mobile}
-        />
-      </div>
+      <Search
+        searchresultEmployee={result}
+        deletee={true}
+        title={"Search Employee"}
+      />
+
+      {result.length > 0 && (
+        <div className=" flex items-center justify-center !mt-15">
+          <Form
+            title={"Edit"}
+            id={id}
+            name={employee?.name}
+            surname={employee?.surname}
+            email={employee?.email}
+            mobile={employee?.mobile}
+          />
+        </div>
+      )}
     </div>
   );
 };
