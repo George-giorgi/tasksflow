@@ -89,8 +89,8 @@ export default function FormEditDelete() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full ">
-      <div className=" h-10 !mt-10 flex items-center justify-center ">
+    <div className="flex flex-col items-center justify-center">
+      <div className="  flex items-center justify-center h-12  text-sm md:text-base  ">
         <p
           className={` ${
             !error ? "text-[var(--success-color)]" : "text-[var(--error-color)]"
@@ -100,15 +100,15 @@ export default function FormEditDelete() {
         </p>
       </div>
 
-      <div className="w-full flex items-center justify-center !mt-5">
+      <div className=" w-[80%] flex items-center justify-center   ">
         <form
           onSubmit={handleUpdate}
-          className="space-y-4 w-full flex flex-col justify-center items-center"
+          className="space-y-4 w-full flex flex-col justify-center items-center "
         >
           {["name", "surname", "email", "mobile"].map((field) => (
             <div
               key={field}
-              className="relative flex items-center justify-center w-[50%]"
+              className="relative flex items-center justify-center w-[70%]"
             >
               <input
                 name={field}
@@ -153,7 +153,7 @@ export default function FormEditDelete() {
                 <UpdateIcon fontSize="small" />
               </button>
             </div>
-            <div className="flex items-center justify-center ">
+            <div className="flex items-center justify-center  ">
               <button
                 type="button"
                 onClick={handleDelete}

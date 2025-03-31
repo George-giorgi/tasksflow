@@ -32,7 +32,7 @@ const Search = ({ title }: { title: string }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center !mt-2">
+    <div className="flex flex-col items-center justify-center">
       <div>
         <input
           className="bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] outline-none placeholder:text-sm placeholder:text-[var(--smaltext-color)] rounded-lg text-center"

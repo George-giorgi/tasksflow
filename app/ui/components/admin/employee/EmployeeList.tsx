@@ -6,15 +6,15 @@ const EmployeeList = async ({ querystring }: { querystring: string }) => {
 
   if (!success || employees?.length === 0) {
     return (
-      <div className=" h-10 !mt-10 flex items-center justify-center ">
+      <div className=" h-12 flex items-center justify-center ">
         <p className=" text-sm">{message}</p>
       </div>
     );
   }
 
   return (
-    <div className="flex items-center justify-center !mt-[48px]">
-      <div className="flex flex-col gap-2 max-h-60 overflow-scroll ">
+    <div className=" w-full flex items-center justify-center ">
+      <div className=" w-[70%] flex flex-col gap-2 max-h-60 overflow-scroll ">
         {employees?.map((empl) => (
           <OneEmployee key={empl.id} {...empl} />
         ))}

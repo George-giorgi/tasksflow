@@ -22,7 +22,7 @@ const OneEmployee = ({ id, name, surname, email, mobile }: OneEmployeeType) => {
       {id && (
         <div
           onClick={(e) => handleClick(e, id)}
-          className="flex items-center cursor-pointer hover:bg-[#333333] transition-all rounded-xl w-max text-sm p-2 gap-2"
+          className="flex items-center justify-center cursor-pointer hover:bg-[#333333] transition-all rounded-xl w-max text-sm p-2 gap-2"
         >
           <p className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-600 text-white font-bold ">
             {name.slice(0, 1).toUpperCase()}

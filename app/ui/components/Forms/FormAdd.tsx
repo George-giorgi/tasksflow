@@ -18,7 +18,6 @@ export default function FormAdd() {
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    // Create a FormData object from the form
     e.preventDefault();
     // after true
     SetisPending(true);
@@ -45,7 +44,7 @@ export default function FormAdd() {
 
   return (
     <div className=" flex flex-col items-center justify-center">
-      <div className=" h-12 !mt-5">
+      <div className=" flex justify-center items-center h-12 text-sm md:text-base ">
         <p
           className={
             !error ? "text-[var(--error-color)]" : "text-[var(--success-color)]"
@@ -55,7 +54,7 @@ export default function FormAdd() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="md:w-[30%] w-[50%] !mt-10">
+      <form onSubmit={handleSubmit} className="md:w-[40%] w-[70%] ">
         <div className="space-y-4">
           <input
             autoComplete="new-name"
@@ -70,6 +69,7 @@ export default function FormAdd() {
                 [e.target.name]: e.target.value,
               }))
             }
+            autoFocus
             required
           />
           <input

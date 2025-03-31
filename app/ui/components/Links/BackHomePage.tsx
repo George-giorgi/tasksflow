@@ -11,9 +11,9 @@ const BackHomePage = ({
   AdminName: string;
 }) => {
   return (
-    <div className=" flex flex-col items-center justify-center ">
+    <div className="w-full flex flex-col items-center justify-center ">
       <Link href={"/"}>
-        <p className=" group flex items-center gap-1 cursor-pointer !mb-5 text-[var(--header-color)] hover:text-[var(--hover-color)] transition-all">
+        <p className=" group flex items-center justify-center gap-1 cursor-pointer !mb-5 text-[var(--header-color)] hover:text-[var(--hover-color)] transition-all">
           <ArrowBackIcon
             className="group-hover:-translate-x-1 transition-all"
             fontSize="small"
@@ -22,8 +22,8 @@ const BackHomePage = ({
           <HomeIcon fontSize="small" />
         </p>
       </Link>
-      <p className="  font-semibold">Hello {AdminName}</p>
-      <h1 className=" text-sm">{WhatDoYouCan}</h1>
+      <p className="  font-semibold ">Hello {AdminName}</p>
+      <h1 className=" text-sm text-center">{WhatDoYouCan}</h1>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import Form from "@/app/ui/components/Share/Form";
 import Search from "@/app/ui/components/Search/Search";
 import BackHomePage from "@/app/ui/components/Links/BackHomePage";
 import EmployeeList from "@/app/ui/components/Admin/employee/EmployeeList";
@@ -13,16 +12,17 @@ const Page = async (props: {
   const querystring = searchParams?.querystring || "";
 
   return (
-    <div>
-      <p className=" md:!mt-40 !mt-20  ">
+    <div className=" flex flex-col  ">
+      <div className=" md:!mt-[var(--mainMargin-top)] !mt-[var(--mainMarginResp-top)]  ">
         <BackHomePage
           WhatDoYouCan={"You can edit or delete employee information."}
           AdminName={"Adminname"}
         />
-
-        <Search title={"Search Employee"} />
-      </p>
-      <div className=" flex md:flex-row flex-col">
+        <div className="!mt-3">
+          <Search title={"Search Employee"} />
+        </div>
+      </div>
+      <div className=" flex md:flex-row flex-col !mt-10">
         <div className=" flex-1 ">
           <EmployeeList querystring={querystring} />
         </div>

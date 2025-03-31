@@ -4,11 +4,14 @@ import ForEmployee from "./ui/components/ForEmployee";
 
 export default function Home() {
   return (
-    <div className=" flex flex-col justify-center items-center gap-10 ">
+    <div className=" flex flex-col justify-center items-center md:gap-40 gap-10 md:!mt-[var(--mainMargin-top)] !mt-[var(--mainMarginResp-top)] ">
       {/* Welcome */}
-      <Welcome />
+      <div className=" flex-1 ">
+        <Welcome />
+      </div>
+
       {/* Admin  And Employee section */}
-      <div className="flex flex-col md:flex-row gap-5 md:gap-0 !mb-20">
+      <div className=" flex-1 flex flex-col md:flex-row gap-5 md:gap-0 !mb-[var(--mainMargin-bottom)]">
         {/* For Admin */}
         <ForAdmin />
         {/* Line */}
