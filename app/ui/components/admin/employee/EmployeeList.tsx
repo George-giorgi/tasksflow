@@ -7,7 +7,7 @@ const EmployeeList = async ({ querystring }: { querystring: string }) => {
   if (!success || employees?.length === 0) {
     return (
       <div className=" h-12 flex items-center justify-center ">
-        <p className=" text-sm">{message}</p>
+        <p className=" text-sm">{message}.</p>
       </div>
     );
   }

@@ -142,11 +142,11 @@ export default function FormEditDelete() {
             </div>
           ))}
 
-          <div className="flex gap-4 !mt-5">
+          <div className="flex gap-4 !mt-5 text-sm">
             <div className=" flex items-center justify-center ">
               <button
                 type="submit"
-                className="flex-1 rounded-lg bg-[#FFCC00]  py-1 px-4 text-[var(--mainBg-color)] hover:text-white  transition cursor-pointer"
+                className="flex-1 rounded-lg bg-[#FFCC00]  py-1 px-4 text-[var(--mainBg-color)] hover:text-white  transition cursor-pointer  "
                 disabled={isUpdating || isLoading}
               >
                 {isUpdating ? "Saving..." : "Update"}

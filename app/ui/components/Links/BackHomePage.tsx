@@ -22,7 +22,7 @@ const BackHomePage = ({
           <HomeIcon fontSize="small" />
         </p>
       </Link>
-      <p className="  font-semibold ">Hello {AdminName}</p>
+      <p className="  font-semibold ">Hello {AdminName}.</p>
       <h1 className=" text-sm text-center">{WhatDoYouCan}</h1>
     </div>
   );

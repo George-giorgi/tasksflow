@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 
 import { createEmployee } from "@/app/utils/actions";
 import { resetForm } from "@/app/utils/resetForm";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function FormAdd() {
   // Initialize state with the incoming prop values
@@ -121,8 +122,14 @@ export default function FormAdd() {
             type="submit"
             className=" flex items-center justify-center w-20 rounded-lg bg-white py-1 px-4 text-[var(--smaltext-color)] hover:text-white hover:bg-[var(--hover-color)] cursor-pointer !mt-4 transition "
           >
-            <span className="  font-semibold text-sm">
-              {isPending ? "Loading" : "Add"}
+            <span className="   font-semibold text-sm">
+              {isPending ? (
+                "Loading"
+              ) : (
+                <span className="flex items-center justify-center">
+                  Add <AddIcon fontSize="small" />
+                </span>
+              )}
             </span>
           </button>
         </div>
