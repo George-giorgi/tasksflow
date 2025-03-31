@@ -27,12 +27,14 @@ export default function FormAdd() {
     const result = await createEmployee(formData);
 
     if (result.success) {
-      setError(false);
+      // true
+      setError(result.success);
 
       // get message from query success
       setMessage(result.message);
     } else {
-      setError(true);
+      // false
+      setError(result.success);
       // get message from query fail
       setMessage(result.message);
     }
@@ -43,10 +45,10 @@ export default function FormAdd() {
 
   return (
     <div className=" flex flex-col items-center justify-center">
-      <div className=" h-12">
+      <div className=" h-12 !mt-5">
         <p
           className={
-            error ? "text-[var(--error-color)]" : "text-[var(--success-color)]"
+            !error ? "text-[var(--error-color)]" : "text-[var(--success-color)]"
           }
         >
           {message}
@@ -106,7 +108,7 @@ export default function FormAdd() {
             name="mobile"
             placeholder="Mobile Number"
             className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] rounded-lg outline-none placeholder:text-sm"
-            value={formState.mobile}
+            value={formState.mobile ?? ""}
             onChange={(e) =>
               setFormState((prev) => ({
                 ...prev,
@@ -117,9 +119,9 @@ export default function FormAdd() {
           />
           <button
             type="submit"
-            className="w-max rounded-lg bg-white py-1 px-4 text-[var(--smaltext-color)] hover:text-white hover:bg-[var(--hover-color)] cursor-pointer !mt-4 transition "
+            className=" flex items-center justify-center w-20 rounded-lg bg-white py-1 px-4 text-[var(--smaltext-color)] hover:text-white hover:bg-[var(--hover-color)] cursor-pointer !mt-4 transition "
           >
-            <span className="  font-semibold">
+            <span className="  font-semibold text-sm">
               {isPending ? "Loading" : "Add"}
             </span>
           </button>

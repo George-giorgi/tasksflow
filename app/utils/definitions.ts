@@ -61,14 +61,6 @@ export type Task = {
   qty?: number;
 };
 
-export type OneEmployee = {
-  id: string;
-  name: string;
-  surname: string;
-  email: string;
-  mobile: string | null;
-};
-
 export type FormProps = {
   id?: string;
   title: string;

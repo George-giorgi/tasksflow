@@ -1,5 +1,6 @@
 "use server";
-import { FormState } from "./definitions/definitions";
+
+import { FormState, OneEmployee } from "./definitions/definitions";
 import prisma from "./prisma_connection";
 
 // Employee Block
@@ -36,70 +37,89 @@ const createEmployee = async (
   }
 };
 
-const searchEmployees = async (query?: string) => {
-  const employees = await prisma.employee.findMany({
-    where: {
-      OR: [
-        { name: { contains: query, mode: "insensitive" } },
-        { surname: { contains: query, mode: "insensitive" } },
-        { email: { contains: query, mode: "insensitive" } },
-        { mobile: { contains: query, mode: "insensitive" } },
-      ],
-    },
-    select: {
-      id: true,
-      name: true,
-      surname: true,
-      email: true,
-      mobile: true,
-    },
-  });
-  return employees;
-};
+// +
+const searchEmployees = async (
+  query: string
+): Promise<{
+  success: boolean;
+  employees?: OneEmployee[];
+  message: string;
+}> => {
+  if (!query) return { success: false, message: "No Search Result" };
 
-const getEmployeeById = async (id?: string) => {
-  if (!id) {
-    // Either return null or throw an error if id is missing
-    return null;
-  }
-  const employee = await prisma.employee.findUnique({
-    where: { id },
-  });
-
-  return employee;
-};
-
-const updateEmployee = async (
-  id: string | undefined,
-  updateData: FormData
-): Promise<{ success: boolean; employee?: any }> => {
-  const { name, surname, email, mobile } = Object.fromEntries(updateData);
   try {
-    const updatedEmployee = await prisma.employee.update({
-      where: { id },
-      data: {
-        name: name as string,
-        surname: surname as string,
-        email: email as string,
-        mobile: mobile as string,
+    const employees = await prisma.employee.findMany({
+      where: {
+        OR: ["name", "surname", "email", "mobile"].map((field) => ({
+          [field]: { contains: query, mode: "insensitive" },
+        })),
+      },
+      select: {
+        id: true,
+        name: true,
+        surname: true,
+        email: true,
+        mobile: true,
       },
     });
-    return { success: true, employee: updatedEmployee };
+
+    return {
+      success: true,
+      employees,
+      ...(employees.length === 0
+        ? { message: "No Search Result" }
+        : { message: "" }),
+    };
+  } catch (error) {
+    console.error("Error searching employees:", error);
+    return {
+      success: false,
+      message: "Failed to search employees.",
+    };
+  }
+};
+
+const getEmployeeById = async (id: string) => {
+  try {
+    const employee = await prisma.employee.findUnique({ where: { id } });
+    if (!employee) {
+      return { success: false, message: "Employee not found" };
+    }
+    return { success: true, employee };
+  } catch (error) {
+    console.error("Error fetching employee:", error);
+    return { success: false, message: "Failed to fetch employee" };
+  }
+};
+
+const updateEmployee = async (formData: FormData) => {
+  try {
+    const id = formData.get("id") as string;
+    const name = formData.get("name") as string;
+    const surname = formData.get("surname") as string;
+    const email = formData.get("email") as string;
+    const mobile = formData.get("mobile") as string;
+
+    await prisma.employee.update({
+      where: { id },
+      data: { name, surname, email, mobile },
+    });
+
+    return { success: true, message: "Employee updated successfully" };
   } catch (error) {
     console.error("Error updating employee:", error);
-    return { success: false };
+    return { success: false, message: "Failed to update employee" };
   }
 };
 
 const deleteEmployee = async (id: string) => {
   try {
-    const deletedEmployee = await prisma.employee.delete({
-      where: { id },
-    });
-    return true;
+    await prisma.employee.delete({ where: { id } });
+
+    return { success: true, message: "Employee deleted successfully" };
   } catch (error) {
     console.error("Error deleting employee:", error);
-    throw error;
+    return { success: false, message: "Failed to delete employee" };
   }
 };
 

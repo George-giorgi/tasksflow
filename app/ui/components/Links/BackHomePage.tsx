@@ -11,7 +11,7 @@ const BackHomePage = ({
   AdminName: string;
 }) => {
   return (
-    <div className=" flex flex-col items-center justify-center md:!mt-40 !mt-20 !mb-5 ">
+    <div className=" flex flex-col items-center justify-center ">
       <Link href={"/"}>
         <p className=" group flex items-center gap-1 cursor-pointer !mb-5 text-[var(--header-color)] hover:text-[var(--hover-color)] transition-all">
           <ArrowBackIcon

@@ -1,6 +1,6 @@
-import Employees from "@/app/ui/components/employee/Employees";
-import Search from "@/app/ui/components/Share/Search";
-import SearchedEmployeeList from "@/app/ui/components/employee/SearchedEmployeList";
+import Employees from "@/app/ui/components/Employee/Employees";
+import Search from "@/app/ui/components/Search/Search";
+import SearchedEmployeeList from "@/app/ui/components/Share/SearchedListsWrapper";
 
 const Page = async (props: {
   searchParams?: Promise<{

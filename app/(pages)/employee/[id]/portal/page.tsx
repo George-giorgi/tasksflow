@@ -1,5 +1,5 @@
 import { getEmployeeById, searchTasks } from "@/app/utils/actions";
-import Search from "@/app/ui/components/Share/Search";
+import Search from "@/app/ui/components/Search/Search";
 
 // Define the shape of your props as Promises.
 type EmployeePortalProps = {

@@ -1,6 +1,6 @@
-import AdminTaskForm from "@/app/ui/components/admin/tasks/AdminTaskForm";
-import Search from "@/app/ui/components/Share/Search";
-import EditFormForTask from "@/app/ui/components/admin/tasks/EditFormForTask";
+import AdminTaskForm from "@/app/ui/components/Admin/tasks/AdminTaskForm";
+import Search from "@/app/ui/components/Search/Search";
+import EditFormForTask from "@/app/ui/components/Admin/tasks/EditFormForTask";
 import { searchTasks, findTaskById } from "@/app/utils/actions";
 const Page = async (props: {
   searchParams?: Promise<{
@@ -21,7 +21,7 @@ const Page = async (props: {
     <div>
       <h1 className=" text-center text-xl !mt-10 !mb-10">Add Tasks</h1>
       <div className=" !mb-36 ">
-        <Search title={"Search Task"} searchTasks={tasksresult} />
+        <Search title={"Search Task"} />
       </div>
       {/* if we try tu find task for edit will render edit form component */}
       {findedTaskForEdit && (

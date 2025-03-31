@@ -1,46 +1,36 @@
 import Form from "@/app/ui/components/Share/Form";
-import Search from "@/app/ui/components/Share/Search";
+import Search from "@/app/ui/components/Search/Search";
 import BackHomePage from "@/app/ui/components/Links/BackHomePage";
-import { searchEmployees, getEmployeeById } from "@/app/utils/actions";
+import EmployeeList from "@/app/ui/components/Admin/employee/EmployeeList";
+import FormEditDelete from "@/app/ui/components/Forms/FormEditDelete";
 
 const Page = async (props: {
   searchParams?: Promise<{
-    id?: string;
-    query?: string;
+    querystring?: string;
   }>;
 }) => {
   const searchParams = await props.searchParams;
-  const query = searchParams?.query;
-  const id = searchParams?.id;
-
-  const result = await searchEmployees(query);
-  const employee = await getEmployeeById(id);
+  const querystring = searchParams?.querystring || "";
 
   return (
-    <div className=" flex justify-center items-center flex-col">
-      <BackHomePage
-        WhatDoYouCan={"You can edit or delete employee information."}
-        AdminName={"Adminname"}
-      />
+    <div>
+      <p className=" md:!mt-40 !mt-20  ">
+        <BackHomePage
+          WhatDoYouCan={"You can edit or delete employee information."}
+          AdminName={"Adminname"}
+        />
 
-      <Search
-        searchresultEmployee={result}
-        deletee={true}
-        title={"Search Employee"}
-      />
-
-      {result.length > 0 && (
-        <div className=" flex items-center justify-center !mt-15">
-          <Form
-            title={"Edit"}
-            id={id}
-            name={employee?.name}
-            surname={employee?.surname}
-            email={employee?.email}
-            mobile={employee?.mobile}
-          />
+        <Search title={"Search Employee"} />
+      </p>
+      <div className=" flex md:flex-row flex-col">
+        <div className=" flex-1 ">
+          <EmployeeList querystring={querystring} />
         </div>
-      )}
+
+        <div className="  flex-1 ">
+          <FormEditDelete />
+        </div>
+      </div>
     </div>
   );
 };
