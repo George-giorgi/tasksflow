@@ -1,6 +1,6 @@
 "use server";
 
-import { FormState, OneEmployee } from "./definitions/definitions";
+import { OneEmployee } from "./definitions/employee/definitions";
 import prisma from "./prisma_connection";
 
 // Employee Block
@@ -10,7 +10,16 @@ const createEmployee = async (
   formData: FormData
 ): Promise<{ success: boolean; employee: object; message: string }> => {
   const { name, surname, email, mobile } = Object.fromEntries(formData);
+  const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
+  // // Simulated DB response function
+  // async function simulatedDbResponse() {
+  //   // Wait for 2 seconds (2000 ms)
+  //   await delay(2000);
+  //   // Return a simulated response
+  //   return { success: true, data: "Sample data from DB" };
+  // }
+  // await simulatedDbResponse();
   try {
     const newEmployee = await prisma.employee.create({
       data: {
@@ -94,15 +103,16 @@ const getEmployeeById = async (id: string) => {
 
 const updateEmployee = async (formData: FormData) => {
   try {
-    const id = formData.get("id") as string;
-    const name = formData.get("name") as string;
-    const surname = formData.get("surname") as string;
-    const email = formData.get("email") as string;
-    const mobile = formData.get("mobile") as string;
+    const { id, name, surname, email, mobile } = Object.fromEntries(formData);
 
     await prisma.employee.update({
-      where: { id },
-      data: { name, surname, email, mobile },
+      where: { id: id as string },
+      data: {
+        name: name as string,
+        surname: surname as string,
+        email: email as string,
+        mobile: mobile as string,
+      },
     });
 
     return { success: true, message: "Employee updated successfully" };
@@ -115,7 +125,7 @@ const updateEmployee = async (formData: FormData) => {
 const deleteEmployee = async (id: string) => {
   try {
     await prisma.employee.delete({ where: { id } });
-
+    // throw new Error("Failed to Delete Invoice");
     return { success: true, message: "Employee deleted successfully" };
   } catch (error) {
     console.error("Error deleting employee:", error);
@@ -126,7 +136,9 @@ const deleteEmployee = async (id: string) => {
 // Tasks Block
 const createTasks = async (formData: FormData) => {
   // Expecting the tasks data as a JSON string in the "tasks" field
+
   const tasksJson = formData.get("tasks");
+  console.log(tasksJson);
   if (!tasksJson) {
     throw new Error("No tasks provided");
   }
@@ -202,7 +214,7 @@ const updateTask = async (
         descriptionFromEmployee: descriptionFromEmployee as string,
         metalType: metalType as string,
         drawing: drawing as string,
-        qty: typeof qty === "string" ? Number(qty) : 0,
+        qty: qty as "string",
       },
     });
     return { success: true, employee: updatedEmployee };

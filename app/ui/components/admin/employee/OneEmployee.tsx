@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { OneEmployee as OneEmployeeType } from "@/app/utils/definitions/definitions";
+
+import { OneEmployee as OneEmployeeType } from "@/app/utils/definitions/employee/definitions";
 
 const OneEmployee = ({ id, name, surname, email, mobile }: OneEmployeeType) => {
   const pathname = usePathname();

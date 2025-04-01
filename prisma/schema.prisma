@@ -30,7 +30,7 @@ model Task {
   descriptionFromEmployee String
   metalType               String
   drawing                 String
-  qty                     Int
+  qty                     String
   createdAt               DateTime @default(now())
   updatedAt               DateTime @default(now()) @updatedAt
 }

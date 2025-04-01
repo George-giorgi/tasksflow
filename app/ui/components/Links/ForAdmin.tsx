@@ -20,15 +20,15 @@ const ForAdmin = () => {
                 <LinkIcon fontSize="small" />
               </span>
             </Link>
-            ,{" "}
-            <Link href={"/admin/edit_delete"}>
+            , {/* Edit Delete */}
+            <Link href={"/admin/edit_delete_employee"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 edit
                 <LinkIcon fontSize="small" />
               </span>
             </Link>
             , and{" "}
-            <Link href={"/admin/edit_delete"}>
+            <Link href={"/admin/edit_delete_employee"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 delete
                 <LinkIcon fontSize="small" />

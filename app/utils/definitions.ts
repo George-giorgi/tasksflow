@@ -51,15 +51,6 @@ export type TaskShapeDb = {
   createdAt: Date;
   updatedAt: Date;
 };
-export type Task = {
-  id?: string;
-  partNumber?: string;
-  description?: string;
-  descriptionFromEmployee?: string;
-  metalType?: string;
-  drawing?: string;
-  qty?: number;
-};
 
 export type FormProps = {
   id?: string;

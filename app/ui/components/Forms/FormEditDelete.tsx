@@ -7,10 +7,13 @@ import {
   updateEmployee,
   deleteEmployee,
 } from "@/app/utils/actions";
-import { FormState } from "@/app/utils/definitions/definitions";
+import MessagesFromDb from "../Messages/MessagesFromDb";
+
+import { FormState } from "@/app/utils/definitions/form/definitions";
 import { resetForm } from "@/app/utils/resetForm";
 import UpdateIcon from "@mui/icons-material/Update";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { employeeFields } from "@/app/utils/definitions/fields/definitions";
 
 export default function FormEditDelete() {
   const [formState, setFormState] = useState<FormState>(resetForm());
@@ -65,7 +68,7 @@ export default function FormEditDelete() {
       setFormState(resetForm());
     }
 
-    setError(!result.success);
+    setError(result.success);
     setMessage(result.message);
     setIsUpdating(false);
     replace(`${pathname}`);
@@ -75,14 +78,14 @@ export default function FormEditDelete() {
     if (!employeeId) return;
 
     setIsDeleting(true);
-    const result = await deleteEmployee(employeeId);
 
-    setError(!result.success);
-    setMessage(result.message);
+    const result = await deleteEmployee(employeeId);
 
     if (result.success) {
       setFormState(resetForm());
     }
+    setError(result.success);
+    setMessage(result.message);
 
     setIsDeleting(false);
     replace(`${pathname}`);
@@ -90,22 +93,14 @@ export default function FormEditDelete() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="  flex items-center justify-center h-12  text-sm md:text-base  ">
-        <p
-          className={` ${
-            !error ? "text-[var(--success-color)]" : "text-[var(--error-color)]"
-          }`}
-        >
-          {message}
-        </p>
-      </div>
+      <MessagesFromDb message={message} error={error} />
 
       <div className=" w-[80%] flex items-center justify-center   ">
         <form
           onSubmit={handleUpdate}
           className="space-y-4 w-full flex flex-col justify-center items-center "
         >
-          {["name", "surname", "email", "mobile"].map((field) => (
+          {employeeFields.map((field) => (
             <div
               key={field}
               className="relative flex items-center justify-center w-[70%]"
@@ -155,7 +150,7 @@ export default function FormEditDelete() {
             </div>
             <div className="flex items-center justify-center  ">
               <button
-                type="button"
+                type="submit"
                 onClick={handleDelete}
                 className="flex-1 rounded-lg bg-[var(--hover-color)] text-[var(--mainBg-color)] py-1 px-4 hover:text-white transition cursor-pointer"
                 disabled={isDeleting || isLoading}

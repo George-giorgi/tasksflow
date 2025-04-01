@@ -1,6 +1,6 @@
 import Welcome from "./ui/components/Welcome";
-import ForAdmin from "./ui/components/ForAdmin";
-import ForEmployee from "./ui/components/ForEmployee";
+import ForAdmin from "./ui/components/Links/ForAdmin";
+import ForEmployee from "./ui/components/Links/ForEmployee";
 
 export default function Home() {
   return (

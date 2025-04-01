@@ -1,4 +1,4 @@
-import { FormState } from "./definitions/definitions";
+import { FormState, FormStateTasks } from "./definitions/form/definitions";
 
 const resetForm = (): FormState => {
   return {
@@ -9,4 +9,18 @@ const resetForm = (): FormState => {
   };
 };
 
-export { resetForm };
+const resetTaskForm = (): FormStateTasks[] => {
+  const defaultState = [
+    {
+      partNumber: "",
+      description: "",
+      metalType: "",
+      drawing: "",
+      qty: "",
+      taskFor: "",
+    },
+  ];
+  return defaultState;
+};
+
+export { resetForm, resetTaskForm };

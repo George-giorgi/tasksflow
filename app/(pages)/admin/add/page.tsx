@@ -10,6 +10,7 @@ const Page = () => {
           AdminName={"Adminname"}
         />
       </div>
+
       <div className=" flex-1">
         <FormAdd />
       </div>

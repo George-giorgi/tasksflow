@@ -13,7 +13,7 @@ const Page = async (props: {
 
   return (
     <div className=" flex flex-col  ">
-      <div className=" md:!mt-[var(--mainMargin-top)] !mt-[var(--mainMarginResp-top)]  ">
+      <div className=" flex-1 md:!mt-[var(--mainMargin-top)] !mt-[var(--mainMarginResp-top)]  ">
         <BackHomePage
           WhatDoYouCan={"You can edit or delete employee information."}
           AdminName={"Adminname"}
@@ -22,7 +22,7 @@ const Page = async (props: {
           <Search title={"Search Employee"} />
         </div>
       </div>
-      <div className=" flex md:flex-row flex-col !mt-10">
+      <div className=" flex-1 flex md:flex-row flex-col !mt-10">
         <div className=" flex-1 ">
           <EmployeeList querystring={querystring} />
         </div>
