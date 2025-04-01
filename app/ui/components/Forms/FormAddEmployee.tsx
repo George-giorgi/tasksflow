@@ -10,6 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { employeeFields } from "@/app/utils/definitions/fields/definitions";
 import { capitalize } from "@/app/utils/capitalize";
 import MessagesFromDb from "../Messages/MessagesFromDb";
+import Button from "../Button/Button";
 
 export default function FormAdd() {
   // Initialize state with the incoming prop values
@@ -69,7 +70,8 @@ export default function FormAdd() {
           </div>
         ))}
 
-        <button
+        <Button key_title={"add"} isPending={isPending} />
+        {/* <button
           type="submit"
           className=" flex items-center justify-center w-20 rounded-lg bg-white py-1 px-4 text-[var(--smaltext-color)] hover:text-white hover:bg-[var(--hover-color)] cursor-pointer !mt-4 transition "
         >
@@ -82,7 +84,7 @@ export default function FormAdd() {
               </span>
             )}
           </span>
-        </button>
+        </button> */}
       </form>
     </div>
   );

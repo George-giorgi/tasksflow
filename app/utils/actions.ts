@@ -115,10 +115,10 @@ const updateEmployee = async (formData: FormData) => {
       },
     });
 
-    return { success: true, message: "Employee updated successfully" };
+    return { success: true, message: "Employee updated successfully." };
   } catch (error) {
     console.error("Error updating employee:", error);
-    return { success: false, message: "Failed to update employee" };
+    return { success: false, message: "Failed to update employee." };
   }
 };
 

@@ -14,6 +14,7 @@ import { resetForm } from "@/app/utils/resetForm";
 import UpdateIcon from "@mui/icons-material/Update";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { employeeFields } from "@/app/utils/definitions/fields/definitions";
+import Button from "../Button/Button";
 
 export default function FormEditDelete() {
   const [formState, setFormState] = useState<FormState>(resetForm());
@@ -137,19 +138,30 @@ export default function FormEditDelete() {
             </div>
           ))}
 
-          <div className="flex gap-4 !mt-5 text-sm">
-            <div className=" flex items-center justify-center ">
-              <button
+          <div className=" md:w-[70%]  flex gap-4 !mt-5 text-sm">
+            <div className=" flex items-center  ">
+              <Button
+                key_title={"update"}
+                isUpdating={isUpdating}
+                isLoading={isLoading}
+              />
+              {/* <button
                 type="submit"
                 className="flex-1 rounded-lg bg-[#FFCC00]  py-1 px-4 text-[var(--mainBg-color)] hover:text-white  transition cursor-pointer  "
                 disabled={isUpdating || isLoading}
               >
                 {isUpdating ? "Saving..." : "Update"}
                 <UpdateIcon fontSize="small" />
-              </button>
+              </button> */}
             </div>
             <div className="flex items-center justify-center  ">
-              <button
+              <Button
+                key_title={"delete"}
+                isDeleting={isDeleting}
+                isLoading={isLoading}
+                handleDelete={handleDelete}
+              />
+              {/* <button
                 type="submit"
                 onClick={handleDelete}
                 className="flex-1 rounded-lg bg-[var(--hover-color)] text-[var(--mainBg-color)] py-1 px-4 hover:text-white transition cursor-pointer"
@@ -157,7 +169,7 @@ export default function FormEditDelete() {
               >
                 {isDeleting ? "Deleting..." : "Delete"}
                 <DeleteIcon fontSize="small" />
-              </button>
+              </button> */}
             </div>
           </div>
         </form>

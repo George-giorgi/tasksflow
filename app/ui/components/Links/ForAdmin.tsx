@@ -14,7 +14,7 @@ const ForAdmin = () => {
           </p>
           <p className="text-sm pl-2 text-[var(--smaltext-color)]">
             Easily{" "}
-            <Link href={"/admin/add"}>
+            <Link href={"/admin/add_employee"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 add
                 <LinkIcon fontSize="small" />
@@ -45,21 +45,21 @@ const ForAdmin = () => {
           </p>
           <p className=" text-sm pl-2 text-[var(--smaltext-color)]">
             Admins have full control over tasks —{" "}
-            <Link href={"/admin/tasks"}>
+            <Link href={"/admin/edd-tasks"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 add
                 <LinkIcon fontSize="small" />
               </span>
             </Link>
             ,{" "}
-            <Link href={"/admin/tasks"}>
+            <Link href={"#"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 edit
                 <LinkIcon fontSize="small" />
               </span>
             </Link>{" "}
             or{" "}
-            <Link href={"/admin/tasks"}>
+            <Link href={"#"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 delete
                 <LinkIcon fontSize="small" />

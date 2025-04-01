@@ -16,7 +16,7 @@ export default function FormAdminAddTask() {
     value: string
   ) => {
     setTasks((prev) => {
-      const newTasks = [...prev]; // Create a shallow copy of tasks array
+      const newTasks = [...prev];
       newTasks[index] = {
         ...newTasks[index],
         [field]: value,
@@ -89,7 +89,18 @@ export default function FormAdminAddTask() {
           </div>
         ))
       )}
-
+      <div className="flex items-center justify-center  ">
+        <button
+          type="submit"
+          // onClick={removeTask}
+          className="flex-1 rounded-lg bg-[var(--hover-color)] text-[var(--mainBg-color)] py-1 px-4 hover:text-white transition cursor-pointer"
+          // disabled={isDeleting || isLoading}
+        >
+          delete
+          {/* {isDeleting ? "Deleting..." : "Delete"}
+                <DeleteIcon fontSize="small" /> */}
+        </button>
+      </div>
       <button
         type="button"
         onClick={addTask}

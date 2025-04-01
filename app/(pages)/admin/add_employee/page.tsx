@@ -1,4 +1,4 @@
-import FormAdd from "@/app/ui/components/Forms/FormAdd";
+import FormAdd from "@/app/ui/components/Forms/FormAddEmployee";
 import BackHomePage from "@/app/ui/components/Links/BackHomePage";
 
 const Page = () => {

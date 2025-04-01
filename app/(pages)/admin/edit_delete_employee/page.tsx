@@ -1,7 +1,7 @@
 import Search from "@/app/ui/components/Search/Search";
 import BackHomePage from "@/app/ui/components/Links/BackHomePage";
 import EmployeeList from "@/app/ui/components/Admin/employee/EmployeeList";
-import FormEditDelete from "@/app/ui/components/Forms/FormEditDelete";
+import FormEditDelete from "@/app/ui/components/Forms/FormEditDeleteEmployee";
 
 const Page = async (props: {
   searchParams?: Promise<{
