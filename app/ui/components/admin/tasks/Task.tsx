@@ -83,22 +83,28 @@ const Task = ({
       <div
         className={`${
           open ? "h-auto" : "hidden"
-        } transition-all overflow-hidden text-sm font-semibold !mt-3`}
+        } transition-all overflow-hidden text-sm  !mt-3`}
       >
         <div>
-          <span className="text-gray-700">Task For: </span> &nbsp;
+          <span className="text-gray-700 font-semibold">Task For: </span> &nbsp;
           <span>{taskFor}</span>
         </div>
         <div>
-          <span className="text-gray-700">Qty:</span>&nbsp;
+          <span className="text-gray-700 font-semibold">Qty:</span>&nbsp;
           <span>{qty}</span>
         </div>
         <div>
-          <span className="text-gray-700">Metal Type: </span> &nbsp;
+          <span className="text-gray-700 font-semibold">Metal Type: </span>{" "}
+          &nbsp;
           <span>{metalType}</span>
         </div>
+        <div>
+          <span className="text-gray-700 font-semibold">Drawing: </span> &nbsp;
+          <span>{drawing}</span>
+        </div>
         <div className="">
-          <span className="text-gray-700 ">Description:</span>&nbsp;
+          <span className="text-gray-700 font-semibold ">Description:</span>
+          &nbsp;
           <span className=" pl-5 block max-w-xs break-words">
             {description}
           </span>

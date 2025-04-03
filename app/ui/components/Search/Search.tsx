@@ -26,6 +26,7 @@ const Search = ({ title }: { title: string }) => {
       params.set("querystring", term);
     } else {
       params.delete("querystring");
+      params.delete("id");
     }
 
     replace(`${pathname}?${params.toString()}`);

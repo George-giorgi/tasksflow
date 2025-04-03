@@ -1,6 +1,7 @@
 import FormAdminAddTask from "@/app/ui/components/Forms/FormAdminAddTask";
 
 import BackHomePage from "@/app/ui/components/Links/BackHomePage";
+import TaskIcon from "@mui/icons-material/Task";
 
 const Page = async (props: {
   searchParams?: Promise<{
@@ -18,6 +19,10 @@ const Page = async (props: {
         <BackHomePage
           WhatDoYouCan={"You can add a tasks."}
           AdminName={"Adminname"}
+          homeLink={"/"}
+          updateDeleteLink={"/admin/edit_delete_tasks"}
+          keyTitle={"Update or Delete Tasks"}
+          icon={<TaskIcon fontSize="small" />}
         />
       </div>
       <div className=" flex-1">

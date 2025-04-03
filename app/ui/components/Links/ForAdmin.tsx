@@ -45,7 +45,7 @@ const ForAdmin = () => {
           </p>
           <p className=" text-sm pl-2 text-[var(--smaltext-color)]">
             Admins have full control over tasks —{" "}
-            <Link href={"/admin/add-tasks"}>
+            <Link href={"/admin/add_tasks"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 add
                 <LinkIcon fontSize="small" />

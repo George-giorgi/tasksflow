@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import Link from "next/link";
 
 import HomeIcon from "@mui/icons-material/Home";
@@ -6,14 +7,24 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const BackHomePage = ({
   WhatDoYouCan,
   AdminName,
+  homeLink,
+  updateDeleteLink,
+  createdLink,
+  keyTitle,
+  icon,
 }: {
   WhatDoYouCan: string;
   AdminName: string;
+  homeLink: string;
+  updateDeleteLink?: string;
+  createdLink?: string;
+  keyTitle?: string;
+  icon: ReactNode;
 }) => {
   return (
     <div className="w-full flex flex-col items-center justify-center ">
-      <Link href={"/"}>
-        <p className=" group flex items-center justify-center gap-1 cursor-pointer !mb-5 text-[var(--header-color)] hover:text-[var(--hover-color)] transition-all">
+      <Link href={homeLink}>
+        <p className=" group flex items-center justify-center gap-1 cursor-pointer !mb-2 text-[var(--header-color)] hover:text-[var(--hover-color)] transition-all">
           <ArrowBackIcon
             className="group-hover:-translate-x-1 transition-all"
             fontSize="small"
@@ -22,6 +33,19 @@ const BackHomePage = ({
           <HomeIcon fontSize="small" />
         </p>
       </Link>
+      {(updateDeleteLink || createdLink) && (
+        <Link href={updateDeleteLink || createdLink || "#"}>
+          <p className=" group flex items-center justify-center gap-1 cursor-pointer !mb-5 text-[var(--header-color)] hover:text-[var(--hover-color)] transition-all">
+            <ArrowBackIcon
+              className="group-hover:-translate-x-1 transition-all"
+              fontSize="small"
+            />
+            <span className=" font-semibold"> {keyTitle}</span>
+            {icon}
+          </p>
+        </Link>
+      )}
+
       <p className="  font-semibold ">Hello {AdminName}.</p>
       <h1 className=" text-sm text-center">{WhatDoYouCan}</h1>
     </div>

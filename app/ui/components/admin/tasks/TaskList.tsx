@@ -12,7 +12,7 @@ const TaskList = async ({ querystring }: { querystring?: string }) => {
   }
   return (
     <div className=" flex items-center justify-center ">
-      <div className=" px-5 w-[70%] flex flex-col gap-3 max-h-60 overflow-scroll ">
+      <div className=" !mt-12 px-5 w-[70%] flex flex-col gap-3 max-h-60 overflow-scroll ">
         {tasks?.map((empl) => (
           <Task key={empl.id} {...empl} />
         ))}
