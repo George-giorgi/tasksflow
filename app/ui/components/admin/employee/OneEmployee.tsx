@@ -12,6 +12,7 @@ const OneEmployee = ({ id, name, surname, email, mobile }: OneEmployeeType) => {
     if (!employeeId) return;
 
     const params = new URLSearchParams();
+
     params.set("id", employeeId);
 
     // replace the current URL with ?id=...

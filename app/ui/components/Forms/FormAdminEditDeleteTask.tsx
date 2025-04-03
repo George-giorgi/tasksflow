@@ -6,19 +6,30 @@ import {
   getEmployeeById,
   updateEmployee,
   deleteEmployee,
+  findTaskById,
+  updateTask,
+  deleteTask,
 } from "@/app/utils/actions";
 import MessagesFromDb from "../Messages/MessagesFromDb";
 
-import { FormState } from "@/app/utils/definitions/form/definitions";
-import { resetForm } from "@/app/utils/resetForm";
+import {
+  FormState,
+  FormStateTasks,
+} from "@/app/utils/definitions/form/definitions";
+import { resetForm, resetTaskForm } from "@/app/utils/resetForm";
 
-import { employeeFields } from "@/app/utils/definitions/fields/definitions";
+import {
+  employeeFields,
+  taskFields,
+} from "@/app/utils/definitions/fields/definitions";
 import Button from "../Button/CustomButton";
 import UpdateIcon from "@mui/icons-material/Update";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function FormEditDelete() {
-  const [formState, setFormState] = useState<FormState>(resetForm());
+export default function FormAdminEditDeleteTask() {
+  const [formState, setFormState] = useState<FormStateTasks>(
+    resetTaskForm()[0]
+  );
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isPending, setIsPending] = useState(false);
@@ -27,20 +38,23 @@ export default function FormEditDelete() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const employeeId = searchParams.get("id") ?? "";
+  const taskId = searchParams.get("id") ?? "";
 
   useEffect(() => {
-    if (!employeeId) return;
+    if (!taskId) return;
 
     (async () => {
       setIsLoading(true);
-      const res = await getEmployeeById(employeeId);
-      if (res.success && res.employee) {
+      const res = await findTaskById(taskId);
+
+      if (res.success && res.task) {
         setFormState({
-          name: res.employee.name ?? "",
-          surname: res.employee.surname ?? "",
-          email: res.employee.email ?? "",
-          mobile: res.employee.mobile ?? "",
+          partNumber: res.task.partNumber ?? "",
+          description: res.task.description ?? "",
+          metalType: res.task.metalType ?? "",
+          qty: res.task.qty ?? "",
+          taskFor: res.task.taskFor ?? "",
+          drawing: res.task.drawing ?? "",
         });
       } else {
         setMessage(res.message || "Employee not found");
@@ -48,21 +62,21 @@ export default function FormEditDelete() {
       }
       setIsLoading(false);
     })();
-  }, [employeeId]);
+  }, [taskId]);
 
   const handleUpdate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!employeeId) return;
+    if (!taskId) return;
 
     setIsPending(true);
     setMessage("");
 
     const formData = new FormData(e.currentTarget);
-    formData.append("id", employeeId);
+    formData.append("id", taskId);
 
-    const result = await updateEmployee(formData);
+    const result = await updateTask(formData);
     if (result.success) {
-      setFormState(resetForm());
+      setFormState(resetTaskForm()[0]);
     }
 
     setError(!result.success);
@@ -72,14 +86,14 @@ export default function FormEditDelete() {
   };
 
   const handleDelete = async () => {
-    if (!employeeId) return;
+    if (!taskId) return;
 
     setIsPending(true);
 
-    const result = await deleteEmployee(employeeId);
+    const result = await deleteTask(taskId);
 
     if (result.success) {
-      setFormState(resetForm());
+      setFormState(resetTaskForm()[0]);
     }
     setError(!result.success);
     setMessage(result.message);
@@ -97,14 +111,14 @@ export default function FormEditDelete() {
           onSubmit={handleUpdate}
           className="space-y-4 w-full flex flex-col justify-center items-center"
         >
-          {employeeFields.map((field) => (
+          {taskFields.map((field) => (
             <div
               key={field}
               className="relative flex items-center justify-center w-[70%]"
             >
               <input
                 name={field}
-                type={field === "email" ? "email" : "text"}
+                type={field}
                 placeholder={
                   isLoading
                     ? `Loading ${

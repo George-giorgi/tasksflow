@@ -6,9 +6,15 @@ import { resetTaskForm } from "@/app/utils/resetForm";
 import { taskFields } from "@/app/utils/definitions/fields/definitions";
 import { capitalize } from "@/app/utils/capitalize";
 import { FormStateTasks } from "@/app/utils/definitions/form/definitions";
-
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import TaskIcon from "@mui/icons-material/Task";
+import Button from "../Button/CustomButton";
+import MessagesFromDb from "../Messages/MessagesFromDb";
 export default function FormAdminAddTask() {
   const [tasks, setTasks] = useState<FormStateTasks[]>(resetTaskForm());
+  const [message, setMessage] = useState<string>("");
+  const [error, setError] = useState(false);
 
   const handleTaskChange = (
     index: number,
@@ -48,70 +54,80 @@ export default function FormAdminAddTask() {
     const formData = new FormData(e.currentTarget);
 
     const result = await createTasks(formData);
+
     if (result.success) {
-      window.alert(
-        tasks.length > 1
-          ? "Tasks added successfully!"
-          : "Task added successfully!"
-      );
       // Reset form tasks array
-      setTasks([
-        {
-          partNumber: "",
-          description: "",
-          metalType: "",
-          drawing: "",
-          qty: "",
-          taskFor: "",
-        },
-      ]);
+      setTasks(resetTaskForm());
+      setMessage(result.message);
+      setError(false);
     } else {
-      window.alert("Failed to add tasks.");
+      // window.alert("Failed to add tasks.");
+      setTasks(resetTaskForm());
+      setMessage(result.message);
+      setError(true);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} method="POST" className="space-y-4 p-4">
-      {tasks.map((task, index) =>
-        taskFields.map((field) => (
-          <div key={`${index}-${field}`} className="space-y-4">
-            <input
-              autoComplete="new-name"
-              type="text"
-              name={field}
-              placeholder={capitalize(field)}
-              className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] outline-none placeholder:text-sm rounded-lg"
-              value={(tasks[index] as any)[field]}
-              onChange={(e) => handleTaskChange(index, field, e.target.value)}
-              autoFocus={field === "partNumber"}
-              required
+    <div className=" flex flex-col items-center justify-center ">
+      <div className=" !mt-4">
+        <MessagesFromDb error={!error} message={message} />
+      </div>
+      <form onSubmit={handleSubmit} method="POST" className="space-y-4 ">
+        {tasks.map((task, index) => (
+          <div
+            key={index}
+            className=" !mb-4 border-b-2 border-dashed border-[var(--smaltext-color)] rounded-lg"
+          >
+            {taskFields.map((field) => (
+              <div key={`${index}-${field}`} className="space-y-4">
+                <input
+                  autoComplete="new-name"
+                  type="text"
+                  name={field}
+                  placeholder={capitalize(field)}
+                  className="w-full bg-transparent border-b-2 border-white py-2 px-3 focus:border-[var(--hover-color)] outline-none placeholder:text-sm rounded-lg"
+                  value={(tasks[index] as any)[field]}
+                  onChange={(e) =>
+                    handleTaskChange(index, field, e.target.value)
+                  }
+                  autoFocus={field === "partNumber"}
+                  // required
+                />
+              </div>
+            ))}
+
+            <Button
+              key_title={"Delete"}
+              className="  bg-[var(--hover-color)] text-[var(--smaltext-color)]  hover:text-white  !mb-4 "
+              icon={<DeleteIcon fontSize="small" />}
+              onClick={() => removeTask(index)}
             />
           </div>
-        ))
-      )}
-      <div className="flex items-center justify-center  ">
-        <button
-          type="submit"
-          // onClick={removeTask}
-          className="flex-1 rounded-lg bg-[var(--hover-color)] text-[var(--mainBg-color)] py-1 px-4 hover:text-white transition cursor-pointer"
-          // disabled={isDeleting || isLoading}
-        >
-          delete
-          {/* {isDeleting ? "Deleting..." : "Delete"}
-                <DeleteIcon fontSize="small" /> */}
-        </button>
-      </div>
-      <button
-        type="button"
-        onClick={addTask}
-        className="bg-blue-500 text-white p-2"
-      >
-        Add Task
-      </button>
-      <input type="hidden" name="tasks" value={JSON.stringify(tasks)} />
-      <button type="submit" className="bg-green-500 text-white p-2 mt-4 block">
-        Submit All Tasks
-      </button>
-    </form>
+        ))}
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            key_title={"Add"}
+            className="bg-[var(--mainText-color)] text-[var(--smaltext-color)] hover:bg-[var(--success-color)] hover:text-[var(--mainText-colo)]"
+            icon={<AddIcon fontSize="small" />}
+            onClick={addTask}
+          />
+
+          <input type="hidden" name="tasks" value={JSON.stringify(tasks)} />
+          {tasks.length >= 1 && (
+            <div className=" flex items-center justify-center">
+              {" "}
+              <Button
+                type={"submit"}
+                key_title="Save"
+                className="bg-[#FFCC00] text-[var(--smaltext-color)] hover:text-white"
+                icon={<TaskIcon fontSize="small" />}
+                taskQty={tasks.length}
+              />
+            </div>
+          )}
+        </div>
+      </form>
+    </div>
   );
 }

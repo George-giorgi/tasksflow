@@ -45,21 +45,21 @@ const ForAdmin = () => {
           </p>
           <p className=" text-sm pl-2 text-[var(--smaltext-color)]">
             Admins have full control over tasks —{" "}
-            <Link href={"/admin/edd-tasks"}>
+            <Link href={"/admin/add-tasks"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 add
                 <LinkIcon fontSize="small" />
               </span>
             </Link>
             ,{" "}
-            <Link href={"#"}>
+            <Link href={"/admin/edit_delete_tasks"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 edit
                 <LinkIcon fontSize="small" />
               </span>
             </Link>{" "}
             or{" "}
-            <Link href={"#"}>
+            <Link href={"/admin/edit_delete_tasks"}>
               <span className="hover:text-[var(--hover-color)] cursor-pointer font-bold text-[16px]">
                 delete
                 <LinkIcon fontSize="small" />

@@ -13,7 +13,7 @@ const Page = async (props: {
   const query = searchParams?.task_query;
 
   return (
-    <div className=" flex flex-col items-center justify-center md:!mt-[var(--mainMargin-top)] !mt-[var(--mainMarginResp-top)] ">
+    <div className=" flex flex-col items-center justify-center md:!mt-[var(--mainMargin-top)] !mt-[var(--mainMarginResp-top)] md:!mb-[var(--mainMargin-bottom)] ">
       <div className=" flex-1">
         <BackHomePage
           WhatDoYouCan={"You can add a tasks."}

@@ -1,6 +1,7 @@
 "use server";
 
 import { OneEmployee } from "./definitions/employee/definitions";
+import { Task } from "./definitions/task/definitions";
 import prisma from "./prisma_connection";
 
 // Employee Block
@@ -138,103 +139,146 @@ const createTasks = async (formData: FormData) => {
   // Expecting the tasks data as a JSON string in the "tasks" field
 
   const tasksJson = formData.get("tasks");
-  console.log(tasksJson);
+
   if (!tasksJson) {
     throw new Error("No tasks provided");
   }
   const tasks = JSON.parse(tasksJson as string);
-
+  const tasksQty = tasks.length;
   // Insert all tasks using createMany
   try {
     await prisma.task.createMany({
       data: tasks,
     });
 
-    return { success: true };
+    return {
+      success: true,
+      message: `Last successfully created ${tasksQty} task.`,
+    };
   } catch (error) {
     console.log("erorrrrrrr for make tasks", error);
 
-    return { success: false };
+    return { success: false, message: "Failed to create tasks." };
   }
 };
 
-const searchTasks = async (query?: string) => {
-  const tasks = await prisma.task.findMany({
-    where: {
-      OR: [
-        { partNumber: { contains: query, mode: "insensitive" } },
-        { description: { contains: query, mode: "insensitive" } },
-        { descriptionFromEmployee: { contains: query, mode: "insensitive" } },
-        { metalType: { contains: query, mode: "insensitive" } },
-        { drawing: { contains: query, mode: "insensitive" } },
-      ],
-    },
-    select: {
-      id: true,
-      partNumber: true,
-      description: true,
-      descriptionFromEmployee: true,
-      metalType: true,
-      drawing: true,
-      qty: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-  });
-  return tasks;
-};
-const findTaskById = async (id?: string) => {
-  if (!id) {
-    // Either return null or throw an error if id is missing
-    return null;
-  }
-  const task = await prisma.task.findUnique({
-    where: { id },
-  });
-  return task;
-};
-const updateTask = async (
-  id: string | undefined,
-  updateData: FormData
-): Promise<{ success: boolean; employee?: any }> => {
-  const {
-    partNumber,
-    description,
-    descriptionFromEmployee,
-    metalType,
-    drawing,
-    qty,
-  } = Object.fromEntries(updateData);
+const searchTasks = async (
+  query?: string
+): Promise<{
+  success: boolean;
+  tasks?: Task[];
+  message: string;
+}> => {
+  if (!query) return { success: false, message: "No Search Result" };
+
   try {
-    const updatedEmployee = await prisma.task.update({
-      where: { id },
+    const tasks = await prisma.task.findMany({
+      where: {
+        OR: ["partNumber", "description", "metalType", "drawing", "qty"].map(
+          (field) => ({
+            [field]: { contains: query, mode: "insensitive" },
+          })
+        ),
+      },
+      select: {
+        id: true,
+        partNumber: true,
+        description: true,
+        metalType: true,
+        drawing: true,
+        qty: true,
+        taskFor: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    return {
+      success: true,
+      tasks,
+      ...(tasks.length === 0
+        ? { message: "No Search Result" }
+        : { message: "" }),
+    };
+  } catch (error) {
+    console.error("Error searching tasks:", error);
+    return {
+      success: false,
+      message: "Failed to search tasks.",
+    };
+  }
+};
+// const searchTasks = async (query?: string) => {
+//   const tasks = await prisma.task.findMany({
+//     where: {
+//       OR: [
+//         { partNumber: { contains: query, mode: "insensitive" } },
+//         { description: { contains: query, mode: "insensitive" } },
+//         // { descriptionFromEmployee: { contains: query, mode: "insensitive" } },
+//         { metalType: { contains: query, mode: "insensitive" } },
+//         { drawing: { contains: query, mode: "insensitive" } },
+//         // { taskFor: { contains: query, mode: "insensitive" } },
+//       ],
+//     },
+//     select: {
+//       id: true,
+//       partNumber: true,
+//       description: true,
+//       // descriptionFromEmployee: true,
+//       metalType: true,
+//       drawing: true,
+//       qty: true,
+//       // taskFor: true,
+//       createdAt: true,
+//       updatedAt: true,
+//     },
+//   });
+//   return tasks;
+// };
+const findTaskById = async (id?: string) => {
+  try {
+    const task = await prisma.task.findUnique({ where: { id } });
+    if (!task) {
+      return { success: false, message: "Task not found" };
+    }
+    return { success: true, task };
+  } catch (error) {
+    console.error("Error fetching task:", error);
+    return { success: false, message: "Failed to fetch task" };
+  }
+};
+const updateTask = async (formData: FormData) => {
+  try {
+    const { id, partNumber, description, metalType, drawing, qty, taskFor } =
+      Object.fromEntries(formData);
+
+    await prisma.task.update({
+      where: { id: id as string },
       data: {
         partNumber: partNumber as string,
         description: description as string,
-        descriptionFromEmployee: descriptionFromEmployee as string,
         metalType: metalType as string,
         drawing: drawing as string,
-        qty: qty as "string",
+        qty: qty as string,
+        taskFor: taskFor as string,
       },
     });
-    return { success: true, employee: updatedEmployee };
+
+    return { success: true, message: "Task updated successfully." };
   } catch (error) {
-    console.error("Error updating employee:", error);
-    return { success: false };
+    console.error("Error updating task:", error);
+    return { success: false, message: "Failed to update task." };
   }
 };
 
-const deleteTask = async (
-  id: string
-): Promise<{ success: boolean; task?: any }> => {
+const deleteTask = async (id: string) => {
   try {
-    const deletedTask = await prisma.task.delete({
-      where: { id },
-    });
-    return { success: true, task: deletedTask };
+    await prisma.task.delete({ where: { id } });
+    // throw new Error("Failed to Delete Invoice");
+    return { success: true, message: "Task deleted successfully." };
   } catch (error) {
     console.error("Error deleting task:", error);
-    return { success: false };
+    return { success: false, message: "Failed to delete task." };
   }
 };
 async function clockInTask(userId: string, taskId: string) {
