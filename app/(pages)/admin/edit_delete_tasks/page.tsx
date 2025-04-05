@@ -30,7 +30,7 @@ const Page = async (props: {
       </div>
       <div className=" flex-1 flex md:flex-row flex-col !mt-10">
         <div className=" flex-1  ">
-          <TaskList querystring={querystring} />
+          <TaskList querystring={querystring} keytitle={"AminTask"} />
         </div>
 
         <div className="  flex-1 ">

@@ -3,16 +3,7 @@ import FormAdminAddTask from "@/app/ui/components/Forms/FormAdminAddTask";
 import BackHomePage from "@/app/ui/components/Links/BackHomePage";
 import TaskIcon from "@mui/icons-material/Task";
 
-const Page = async (props: {
-  searchParams?: Promise<{
-    task_query?: string;
-  }>;
-}) => {
-  const searchParams = await props.searchParams;
-
-  // gramb querys
-  const query = searchParams?.task_query;
-
+const Page = async () => {
   return (
     <div className=" flex flex-col items-center justify-center md:!mt-[var(--mainMargin-top)] !mt-[var(--mainMarginResp-top)] md:!mb-[var(--mainMargin-bottom)] ">
       <div className=" flex-1">

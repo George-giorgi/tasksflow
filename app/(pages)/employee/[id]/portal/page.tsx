@@ -1,40 +1,31 @@
-import { getEmployeeById, searchTasks } from "@/app/utils/actions";
-import Search from "@/app/ui/components/Search/Search";
+import ButtonWrapper from "@/app/ui/components/Button/CustomButtonProcess";
+import ChoosedTask from "@/app/ui/components/EmployeePortal/Task/ChoosedTask";
+import BackHomePage from "@/app/ui/components/Links/BackHomePage";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
-// Define the shape of your props as Promises.
-type EmployeePortalProps = {
-  params: Promise<{ id: string }>;
-  searchParams?: Promise<{ id?: string; task_query?: string }>;
-};
-
-const EmployeePortal = async ({
-  params,
-  searchParams,
-}: EmployeePortalProps) => {
-  // Await the params before accessing its properties.
-  const resolvedParams = await params;
-  const emplId = resolvedParams.id;
-
-  // Await searchParams if provided.
-  const resolvedSearchParams = searchParams ? await searchParams : {};
-  const forSearchTasks = resolvedSearchParams.task_query;
-
-  const employee = await getEmployeeById(emplId);
-  const searchedTasks = await searchTasks(forSearchTasks);
+const Page = async (props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
+  const id = params.id;
 
   return (
-    <div>
-      <p>Portal Employee</p>
-      <p>Hello {employee?.name}</p>
-      <p>Please choose task</p>
-      <Search
-        title="Search Task"
-        searchTasks={searchedTasks}
-        portal={true}
-        employeeId={employee?.id}
-      />
+    <div className="flex flex-col items-center justify-center min-h-screen gap-10 ">
+      <div className="flex-1 flex items-end">
+        <BackHomePage
+          keyTitle={"Search your next Task."}
+          WhatDoYouCan={"CklockIn, Clock Out and Switch your task."}
+          employeeName={"registeredEmployyname"}
+          // employeeLink={"/employee"}
+          icon={<AssignmentIcon fontSize="small" />}
+        />
+      </div>
+      <div className="flex items-end">
+        <ChoosedTask TaskId={id} />
+      </div>
+      <div className="flex-1 ">
+        <ButtonWrapper taskid={id} />
+      </div>
     </div>
   );
 };
 
-export default EmployeePortal;
+export default Page;

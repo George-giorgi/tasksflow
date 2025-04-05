@@ -6,4 +6,5 @@ export type Task = {
   drawing: string;
   qty: string;
   taskFor: string;
+  keytitle?: string;
 };

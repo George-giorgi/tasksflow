@@ -21,8 +21,11 @@ const ForEmployee = () => {
             what needs to be done.
           </p>
         </div>
+        {/* fake id */}
         <div className=" !mb-3">
-          <Link href={"/employee"}>
+          <Link
+            href={`/employee/${"63720d1b-1fe3-4195-bd24-ccd0e11858dc"}/portal`}
+          >
             <p className=" cursor-pointer w-max !mb-1 font-semibold hover:text-[var(--hover-color)] ">
               Clock In & Clock Out &nbsp;
               <LinkIcon fontSize="small" />
@@ -35,7 +38,9 @@ const ForEmployee = () => {
           </p>
         </div>
         <div className=" ">
-          <Link href={"/employee"}>
+          <Link
+            href={`/employee/${"63720d1b-1fe3-4195-bd24-ccd0e11858dc"}/portal`}
+          >
             <p className=" cursor-pointer w-max !mb-1 font-semibold hover:text-[var(--hover-color)] ">
               Task Switching &nbsp;
               <LinkIcon fontSize="small" />
