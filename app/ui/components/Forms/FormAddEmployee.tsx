@@ -4,7 +4,7 @@ import { FormState } from "@/app/utils/definitions/form/definitions";
 
 import { useState, FormEvent } from "react";
 
-import { createEmployee } from "@/app/utils/actions";
+import { createEmployee } from "@/app/utils/actions/actions";
 import { resetForm } from "@/app/utils/resetForm";
 
 import { employeeFields } from "@/app/utils/definitions/fields/definitions";

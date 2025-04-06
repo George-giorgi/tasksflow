@@ -1,4 +1,6 @@
 type EmployeeFields = "name" | "surname" | "email" | "mobile";
+type RegFields = "name" | "email" | "password" | "repeatpassword";
+type LogFields = "email" | "password";
 type TaskFields =
   | "partNumber"
   | "metalType"
@@ -23,3 +25,11 @@ export const taskFields: TaskFields[] = [
   "drawing",
   "taskFor",
 ];
+
+export const regfields: RegFields[] = [
+  "name",
+  "email",
+  "password",
+  "repeatpassword",
+];
+export const logfields: LogFields[] = ["email", "password"];

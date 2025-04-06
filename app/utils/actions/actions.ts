@@ -1,8 +1,8 @@
 "use server";
 
-import { OneEmployee } from "./definitions/employee/definitions";
-import { Task } from "./definitions/task/definitions";
-import prisma from "./prisma_connection";
+import { OneEmployee } from "../definitions/employee/definitions";
+import { Task } from "../definitions/task/definitions";
+import prisma from "../prisma_connection";
 
 // Employee Block
 
@@ -95,7 +95,7 @@ const getEmployeeById = async (id: string) => {
     if (!employee) {
       return { success: false, message: "Employee not found" };
     }
-    return { success: true, employee };
+    return { success: true, employee, message: "Employee found" };
   } catch (error) {
     console.error("Error fetching employee:", error);
     return { success: false, message: "Failed to fetch employee" };

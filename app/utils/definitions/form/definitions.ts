@@ -13,3 +13,15 @@ export type FormStateTasks = {
   qty: string;
   taskFor: string;
 };
+
+export type RegFormState = {
+  name: string;
+  email: string;
+  password: string;
+  repeatpassword: string;
+};
+
+export type LogFormState = {
+  email: string;
+  password: string;
+};

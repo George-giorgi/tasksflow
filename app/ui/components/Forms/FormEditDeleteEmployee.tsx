@@ -6,7 +6,7 @@ import {
   getEmployeeById,
   updateEmployee,
   deleteEmployee,
-} from "@/app/utils/actions";
+} from "@/app/utils/actions/actions";
 import MessagesFromDb from "../Messages/MessagesFromDb";
 
 import { FormState } from "@/app/utils/definitions/form/definitions";

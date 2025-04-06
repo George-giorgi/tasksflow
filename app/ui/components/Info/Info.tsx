@@ -1,4 +1,4 @@
-import { countEmployees, countTasks } from "@/app/utils/info_actions";
+import { countEmployees, countTasks } from "@/app/utils/actions/info_actions";
 import PersonIcon from "@mui/icons-material/Person";
 
 const Info = async () => {

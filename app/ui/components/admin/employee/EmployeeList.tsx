@@ -1,4 +1,4 @@
-import { searchEmployees } from "@/app/utils/actions";
+import { searchEmployees } from "@/app/utils/actions/actions";
 import OneEmployee from "./OneEmployee";
 
 const EmployeeList = async ({ querystring }: { querystring: string }) => {

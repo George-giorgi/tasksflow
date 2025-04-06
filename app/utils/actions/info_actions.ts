@@ -1,4 +1,4 @@
-import prisma from "./prisma_connection";
+import prisma from "../prisma_connection";
 
 const countEmployees = async () => {
   try {
