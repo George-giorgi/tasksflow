@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { LogFormState } from "@/app/utils/definitions/form/definitions";
@@ -10,27 +10,37 @@ import { capitalize } from "@/app/utils/capitalize";
 import { getEmployeeById } from "@/app/utils/actions/actions";
 import MessagesFromDb from "../Messages/MessagesFromDb";
 import { loginUser } from "@/app/utils/actions/auth";
+import { useUserStore } from "@/app/utils/store/useUserStore";
+import { LoginRounded } from "@mui/icons-material";
 
 const Log = () => {
   const [formState, setFormState] = useState<LogFormState>({
+    name: "",
     email: "",
     password: "",
   });
+
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
   const searchParams = useSearchParams();
   const id = searchParams.get("id") || "";
   const { push } = useRouter();
+  const { user, setUser } = useUserStore();
+  console.log(user);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent the default form submission
-    const { email, password } = formState;
+
+    const formData = new FormData(e.currentTarget);
 
     // Call the login user function
-    const resp = await loginUser(email, password);
-    if (resp.success) {
+    const resp = await loginUser(formData);
+
+    if (resp.success && resp.user) {
       setMessage(resp.message);
       setError(false); // No error
+      // main action  update userstate
+      setUser(resp.user);
       push("/");
     } else {
       setMessage(resp.message);
@@ -46,6 +56,7 @@ const Log = () => {
       if (success && employee) {
         setFormState((prev) => ({
           ...prev,
+          name: employee.name || "",
           email: employee.email || "",
         }));
       } else {
@@ -75,8 +86,8 @@ const Log = () => {
                   [e.target.name]: e.target.value,
                 }))
               }
-              autoFocus={field === "email"}
-              readOnly={field === "email"} // Ensure readonly for email if fetched from employee data
+              // autoFocus={field === "password"}
+              readOnly={field === "email" || field === "name"} // Ensure readonly for email if fetched from employee data
               required
             />
           </div>

@@ -39,12 +39,21 @@ export const registerUser = async (formData: FormData) => {
   }
 };
 
-export const loginUser = async (email: string, password: string) => {
-  const user = await prisma.user.findUnique({ where: { email } });
+export const loginUser = async (formData: FormData) => {
+  const formEntries = Object.fromEntries(formData.entries());
+  const { email, password } = formEntries;
+
+  const user = await prisma.user.findUnique({
+    where: { email: email as string },
+  });
+
   if (!user) return { success: false, message: "Invalid credentials" };
 
-  const valid = await comparePasswords(password, user.password);
+  const valid = await comparePasswords(password as string, user.password);
   if (!valid) return { success: false, message: "Invalid credentials" };
 
-  return { success: true, user, message: "LogIn successfully" };
+  // ✅ Return user without password
+  const { password: _removed, ...safeUser } = user;
+
+  return { success: true, user: safeUser, message: "Login successfully" };
 };

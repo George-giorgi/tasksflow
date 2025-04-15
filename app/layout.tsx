@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { montserrat } from "./fonts";
+import LogOut from "./ui/components/Button/LogOut";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className}  min-h-screen bg-[var(--mainBg-color)] text-[var(--mainText-color)] antialiased`}
       >
+        <LogOut />
         {children}
       </body>
     </html>

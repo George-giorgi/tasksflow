@@ -2,6 +2,7 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useClockStore } from "@/app/utils/store/cklock";
 
 const Search = ({ title }: { title: string }) => {
   const searchParams = useSearchParams();

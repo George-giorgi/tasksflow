@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Reg from "./Reg";
 import Log from "./Log";
+import LoginIcon from "@mui/icons-material/Login";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 
 const RegLogWrapper = () => {
   const [toggle, setToggle] = useState<"log" | "reg">("log");
@@ -18,7 +20,7 @@ const RegLogWrapper = () => {
           }`}
           onClick={() => setToggle("log")}
         >
-          Login
+          Login <LoginIcon fontSize="small" />
         </button>
         <button
           className={` px-4 py-2 rounded-lg cursor-pointer !text-sm hover:bg-[var(--header-color)]     ${
@@ -28,7 +30,7 @@ const RegLogWrapper = () => {
           }`}
           onClick={() => setToggle("reg")}
         >
-          Register
+          Register <AppRegistrationIcon fontSize="small" />
         </button>
       </div>
       <div className=" !mt-10">{toggle === "log" ? <Log /> : <Reg />}</div>

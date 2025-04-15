@@ -1,13 +1,28 @@
 "use client";
+
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Link from "next/link";
+import { Task } from "@/app/utils/definitions/task/definitions";
+import { useTaskStore } from "@/app/utils/store/taskStore";
 
-const ChooseButton = ({ id }: { id: string }) => {
+const ChooseButton = ({ ...props }: Task) => {
+  const store = useTaskStore();
   const handleCklick = (e: any) => {
     e.stopPropagation();
-    console.log("choosed task id " + id);
+    store.setTask({ ...props });
   };
+
+  const {
+    id,
+    partNumber,
+    description,
+    metalType,
+    drawing,
+    qty,
+    taskFor,
+    keytitle,
+  } = { ...props };
 
   return (
     <div>

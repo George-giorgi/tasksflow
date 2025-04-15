@@ -11,9 +11,11 @@ const Page = async (props: {
   const searchParams = await props.searchParams;
   const querystring = searchParams?.querystring || "";
   return (
-    <div className=" flex flex-col min-h-screen ">
+    <div className=" flex md:flex-row flex-col items-center justify-center min-h-screen md:gap-0 gap-10 !mb-10 ">
       <div className=" flex-1 flex flex-col items-center justify-center">
-        <BackHomePage WhatDoYouCan="Find Yourself For Reg/Log" />
+        <div className=" !mt-10 md:mt-0">
+          <BackHomePage />
+        </div>
         <Search title={"Find Yourself."} />
         <EmployeeList querystring={querystring} />
       </div>

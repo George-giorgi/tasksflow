@@ -94,7 +94,7 @@ const Reg = () => {
                   [e.target.name]: e.target.value,
                 }))
               }
-              autoFocus={field === "name"}
+              autoFocus={field === "password"}
               readOnly={field === "name" || field === "email"}
               required
             />

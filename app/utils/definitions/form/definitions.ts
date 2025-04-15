@@ -22,6 +22,7 @@ export type RegFormState = {
 };
 
 export type LogFormState = {
+  name: string;
   email: string;
   password: string;
 };

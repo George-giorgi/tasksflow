@@ -19,8 +19,8 @@ const TaskList = async ({
   return (
     <div className=" flex justify-center ">
       <div className=" !mt-12 px-5 w-[100%] md:w-[75%]  flex flex-col gap-3 max-h-60 overflow-scroll ">
-        {tasks?.map((empl) => (
-          <Task key={empl.id} {...empl} keytitle={keytitle} />
+        {tasks?.map((task) => (
+          <Task key={task.id} {...task} keytitle={keytitle} />
         ))}
       </div>
     </div>

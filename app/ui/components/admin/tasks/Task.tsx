@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Task } from "@/app/utils/definitions/task/definitions";
 
@@ -36,13 +36,24 @@ const Task = ({
           <p>{partNumber}</p>
         </div>
         <div>
-          {!store.out && store.sw && (
+          {store.out == false && store.sw == true && (
             <SwitchSeperateButton keytitle={"Switch"} id={id} />
           )}
           {keytitle == "AminTask" && (
             <DeleteUpdateExpland open={open} id={id} />
           )}
-          {!store.sw && keytitle == "EmployeerTask" && <ChooseButton id={id} />}
+          {keytitle == "EmployeerTask" && !store.sw && (
+            <ChooseButton
+              id={id}
+              partNumber={partNumber}
+              description={description}
+              metalType={metalType}
+              drawing={drawing}
+              qty={qty}
+              taskFor={taskFor}
+              keytitle={keytitle}
+            />
+          )}
         </div>
       </div>
 

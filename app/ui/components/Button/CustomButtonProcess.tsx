@@ -1,9 +1,12 @@
 "use client";
-
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { buttonConfigs } from "@/app/utils/constants";
 import { useClockStore } from "@/app/utils/store/cklock";
 import { clockActions } from "@/app/utils/definitions/clock/definition";
+import { useTaskStore } from "@/app/utils/store/taskStore";
+import { useUserStore } from "@/app/utils/store/useUserStore";
+// import { findTaskById } from "@/app/utils/actions/actions";
 
 // Define types for the button props, expecting an icon as a React component.
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,20 +18,26 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const ButtonWrapper = ({ taskid }: { taskid: string }) => {
   // Fetch the clock state from the store
   const store = useClockStore();
-  console.log(store);
-  const { push } = useRouter();
+  const { clearTask } = useTaskStore();
 
-  const handleclick = (keytitle: string) => {
+  const { push } = useRouter();
+  const { resetUser } = useUserStore();
+
+  const handleclick = async (keytitle: string) => {
     console.log("from wrapper " + taskid + keytitle);
     const updates = clockActions[keytitle];
     if (updates) {
       store.setClockStates(updates);
       if (keytitle === "Switch") {
+        // const task = await findTaskById(taskid);
+        // setTask(task.task);
         push("/employee");
       }
       if (keytitle === "ClockOut") {
-        push("/employee");
         store.resetClockStates();
+        clearTask();
+        resetUser();
+        push("/reg_log");
       }
     }
   };

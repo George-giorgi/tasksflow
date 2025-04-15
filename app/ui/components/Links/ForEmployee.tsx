@@ -1,7 +1,10 @@
+"use client";
 import LinkIcon from "@mui/icons-material/Link";
 import Link from "next/link";
+import { useTaskStore } from "@/app/utils/store/taskStore";
 
 const ForEmployee = () => {
+  const { task } = useTaskStore();
   return (
     <div className=" flex-1 pl-10 pr-10 md:pr-44">
       <h2 className="  font-semibold text-[var(--header-color)] !mb-5">
@@ -9,7 +12,7 @@ const ForEmployee = () => {
       </h2>
       <div>
         <div className=" !mb-3">
-          <Link href={"/employee"}>
+          <Link href={task ? `/employee/${task.id}/portal` : "/employee"}>
             <p className=" cursor-pointer w-max !mb-1 font-semibold hover:text-[var(--hover-color)] ">
               Task Portal &nbsp;
               <LinkIcon fontSize="small" />
@@ -22,7 +25,7 @@ const ForEmployee = () => {
           </p>
         </div>
         {/* fake id */}
-        <div className=" !mb-3">
+        {/* <div className=" !mb-3">
           <Link
             href={`/employee/${"63720d1b-1fe3-4195-bd24-ccd0e11858dc"}/portal`}
           >
@@ -51,7 +54,7 @@ const ForEmployee = () => {
             Seamlessly switch between tasks throughout the day, making it easy
             to manage multiple projects at once.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
