@@ -20,5 +20,21 @@ const countTasks = async () => {
     throw error;
   }
 };
+const getSortedTasks = async () => {
+  try {
+    const tasks = await prisma.task.findMany();
 
-export { countEmployees, countTasks };
+    const statusOrder = ["initi", "progress", "done"];
+
+    const sortedTasks = tasks.sort(
+      (a, b) => statusOrder.indexOf(a.status) - statusOrder.indexOf(b.status)
+    );
+
+    return sortedTasks;
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    return [];
+  }
+};
+
+export { countEmployees, countTasks, getSortedTasks };
