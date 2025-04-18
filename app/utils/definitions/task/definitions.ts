@@ -7,4 +7,5 @@ export type Task = {
   qty: string;
   taskFor: string;
   keytitle?: string;
+  status: string;
 };

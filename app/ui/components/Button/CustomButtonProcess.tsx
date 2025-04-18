@@ -6,6 +6,7 @@ import { useClockStore } from "@/app/utils/store/cklock";
 import { clockActions } from "@/app/utils/definitions/clock/definition";
 import { useTaskStore } from "@/app/utils/store/taskStore";
 import { useUserStore } from "@/app/utils/store/useUserStore";
+import { updateTaskStatus } from "@/app/utils/actions/actions";
 // import { findTaskById } from "@/app/utils/actions/actions";
 
 // Define types for the button props, expecting an icon as a React component.
@@ -18,7 +19,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const ButtonWrapper = ({ taskid }: { taskid: string }) => {
   // Fetch the clock state from the store
   const store = useClockStore();
-  const { clearTask } = useTaskStore();
+  const { task, clearTask } = useTaskStore();
 
   const { push } = useRouter();
   const { resetUser } = useUserStore();
@@ -28,9 +29,14 @@ const ButtonWrapper = ({ taskid }: { taskid: string }) => {
     const updates = clockActions[keytitle];
     if (updates) {
       store.setClockStates(updates);
+      if (keytitle === "ClockIn") {
+        console.log("click on clock in");
+        await updateTaskStatus(task?.id, "ClockIn");
+      }
       if (keytitle === "Switch") {
         // const task = await findTaskById(taskid);
         // setTask(task.task);
+        await updateTaskStatus(task?.id, "Switch");
         push("/employee");
       }
       if (keytitle === "ClockOut") {

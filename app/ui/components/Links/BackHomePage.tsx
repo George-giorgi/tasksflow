@@ -33,7 +33,6 @@ const BackHomePage = ({
   const { task } = useTaskStore();
   const clockStore = useClockStore();
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <div className="w-full flex flex-col items-center justify-center ">
@@ -75,7 +74,7 @@ const BackHomePage = ({
               className="group-hover:-translate-x-1 transition-all"
               fontSize="small"
             />
-            <span className=" font-semibold">Back to Search.</span>
+            <span className=" font-semibold">Back to Search Task.</span>
           </p>
         </Link>
       )}

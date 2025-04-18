@@ -188,6 +188,7 @@ const searchTasks = async (
         drawing: true,
         qty: true,
         taskFor: true,
+        status: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -319,6 +320,35 @@ async function clockOutTask(userId: string) {
   });
   return updatedSession;
 }
+
+const updateTaskStatus = async (taskId?: string, keytitle?: string) => {
+  try {
+    let status;
+
+    if (keytitle === "ClockIn") {
+      status = "progress";
+    } else if (keytitle === "Switch") {
+      status = "done";
+    } else {
+      throw new Error("Invalid keytitle");
+    }
+
+    const updatedTask = await prisma.task.update({
+      where: {
+        id: taskId,
+      },
+      data: {
+        status,
+      },
+    });
+
+    return { success: true, task: updatedTask };
+  } catch (error: any) {
+    console.error("Error updating task status:", error);
+    return { success: false, message: error.message || "Unknown error" };
+  }
+};
+
 export {
   createEmployee,
   searchEmployees,
@@ -332,4 +362,5 @@ export {
   deleteTask,
   clockInTask,
   clockOutTask,
+  updateTaskStatus,
 };

@@ -38,6 +38,7 @@ model Task {
   metalType               String
   drawing                 String
   qty                     String
+  status                  String @default("init")
   // i add this field later
   taskFor                 String @default("")
   createdAt               DateTime @default(now())

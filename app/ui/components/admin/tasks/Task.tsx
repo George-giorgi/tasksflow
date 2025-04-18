@@ -52,6 +52,7 @@ const Task = ({
               qty={qty}
               taskFor={taskFor}
               keytitle={keytitle}
+              status=""
             />
           )}
         </div>
